@@ -34,12 +34,12 @@
           <p class="eyebrow" id="kyb-title" data-i18n="kybHeading">
             KYB Company Verification
           </p>
-          <h2 data-i18n="kybSubheading">
+          <h2 id="kyb-subheading" data-i18n="kybSubheading">
             Complete your company verification process to comply with regulatory
             requirements
           </h2>
         </div>
-        <ul class="kyb-points">
+        <ul class="kyb-points" id="kyb-points">
           <li data-i18n="kybPoint1">Company profile & registration documents</li>
           <li data-i18n="kybPoint2">UBO and director compliance data</li>
           <li data-i18n="kybPoint3">Business model, volume & supporting files</li>
@@ -50,223 +50,507 @@
       </aside>
 
       <section class="kyb" aria-labelledby="kyb-title">
-      <form class="kyb-form">
-        <section>
-          <h3 data-i18n="kybCompanyBasicTitle">Company Basic Information</h3>
-          <p data-i18n="kybBasicInfoTitle">Basic Information</p>
-          <div class="kyb-grid">
-            <label>
-              <span data-i18n="kybCompanyName">Company Name</span>
-              <input
-                type="text"
-                placeholder="Lavas Labs Pte. Ltd."
-                data-i18n-placeholder="kybCompanyNamePlaceholder"
-              />
-            </label>
-            <label>
-              <span data-i18n="kybCompanyNameEnglish">Company Name (English)</span>
-              <input
-                type="text"
-                placeholder="Lavas Labs Pte. Ltd."
-                data-i18n-placeholder="kybCompanyNameEnglishPlaceholder"
-              />
-            </label>
-            <label>
-              <span data-i18n="kybBusinessRegNo">Business Registration Number</span>
-              <input type="text" />
-            </label>
-            <label>
-              <span data-i18n="kybTaxRegNo">Tax Registration Number</span>
-              <input type="text" />
-            </label>
-            <label>
-              <span data-i18n="kybCountry">Country/Region of Registration</span>
-              <select>
-                <option value="" disabled selected data-i18n="kybSelectCountry">
-                  Select country/region
-                </option>
-                <option value="us">United States</option>
-                <option value="sg">Singapore</option>
-                <option value="hk">Hong Kong</option>
-                <option value="cn">China</option>
-                <option value="gb">United Kingdom</option>
-                <option value="de">Germany</option>
-                <option value="fr">France</option>
-                <option value="jp">Japan</option>
-                <option value="kr">South Korea</option>
-                <option value="au">Australia</option>
-                <option value="ca">Canada</option>
-                <option value="in">India</option>
-                <option value="ae">United Arab Emirates</option>
-                <option value="ch">Switzerland</option>
-                <option value="nl">Netherlands</option>
-                <option value="it">Italy</option>
-                <option value="es">Spain</option>
-                <option value="se">Sweden</option>
-                <option value="vn">Vietnam</option>
-                <option value="ky">Cayman Islands</option>
-                <option value="kn">Saint Kitts and Nevis</option>
-                <option value="vg">British Virgin Islands</option>
-              </select>
-            </label>
-            <label>
-              <span data-i18n="kybCompanyType">Company Type</span>
-              <input type="text" />
-            </label>
-            <label>
-              <span data-i18n="kybIndustry">Industry</span>
-              <input type="text" />
-            </label>
-          </div>
-        </section>
+        <!-- Verification Type Toggle -->
+        <div class="verification-type-toggle">
+          <button type="button" class="toggle-btn active" data-type="business" data-i18n="kybToggleBusiness">
+            Business Verification
+          </button>
+          <button type="button" class="toggle-btn" data-type="individual" data-i18n="kybToggleIndividual">
+            Individual Verification
+          </button>
+        </div>
 
-        <section>
-          <p data-i18n="kybRegistrationInfoTitle">Registration Information</p>
-          <div class="kyb-grid">
-            <label>
-              <span data-i18n="kybRegistrationDate">Registration Date</span>
-              <input type="date" />
-            </label>
-            <label class="full-width">
-              <span data-i18n="kybRegisteredAddress">Registered Address</span>
-              <input type="text" />
-            </label>
-          </div>
-        </section>
-
-        <section>
-          <h3 data-i18n="kybBusinessInfoTitle">Business Information</h3>
-          <div class="kyb-grid">
-            <label class="full-width">
-              <span data-i18n="kybBusinessScope">Business Scope</span>
-              <textarea
-                rows="3"
-                data-i18n-placeholder="kybBusinessScopePlaceholder"
-                placeholder="Describe licensed business scope"
-              ></textarea>
-            </label>
-            <label>
-              <span data-i18n="kybExpectedVolume">Expected Monthly Volume</span>
-              <select>
-                <option value="" disabled selected data-i18n="kybSelectVolume">
-                  Select monthly volume range
-                </option>
-                <option value="0-1M">0 - 1M USD</option>
-                <option value="1-5M">1M - 5M USD</option>
-                <option value="5-10M">5M - 10M USD</option>
-                <option value="10M+">10M+ USD</option>
-              </select>
-            </label>
-            <label class="full-width">
-              <span data-i18n="kybBusinessDescription">Business Description</span>
-              <textarea
-                rows="3"
-                data-i18n-placeholder="kybBusinessDescriptionPlaceholder"
-                placeholder="Summarize products, services, payment flows"
-              ></textarea>
-            </label>
-          </div>
-        </section>
-
-        <section>
-          <h3 data-i18n="kybDocumentsTitle">Company Registration Documents</h3>
-          <p data-i18n="kybDocumentsDesc">
-            Please upload your company registration documents:
-          </p>
-          <div class="file-grid">
-            <div class="file-field">
-              <p data-i18n="kybDocBusinessCert">Business Registration Certificate</p>
-              <label class="upload-btn">
-                <input type="file" name="businessCertificate" />
-                <span data-i18n="kybUploadCertificate">Upload Certificate</span>
+        <!-- Business Verification Form -->
+        <form class="kyb-form" id="business-form">
+          <section>
+            <h3 data-i18n="kybCompanyBasicTitle">Company Basic Information</h3>
+            <p data-i18n="kybBasicInfoTitle">Basic Information</p>
+            <div class="kyb-grid">
+              <label class="full-width">
+                <span data-i18n="kybLegalEntityName">Legal Entity Name</span>
+                <input
+                  type="text"
+                  name="legalEntityName"
+                  placeholder="Lavas Labs Pte. Ltd."
+                  data-i18n-placeholder="kybCompanyNamePlaceholder"
+                  required
+                />
+              </label>
+              <label class="full-width">
+                <span data-i18n="kybRegisteredAddress">Registered Address</span>
+                <input
+                  type="text"
+                  name="registeredAddress"
+                  data-i18n-placeholder="kybRegisteredAddressPlaceholder"
+                  placeholder="Enter registered address"
+                  required
+                />
+              </label>
+              <label class="full-width">
+                <span data-i18n="kybPrincipalOperatingAddress">Principal Operating Address</span>
+                <input
+                  type="text"
+                  name="principalOperatingAddress"
+                  data-i18n-placeholder="kybPrincipalOperatingAddressPlaceholder"
+                  placeholder="Enter principal operating address"
+                  required
+                />
+              </label>
+              <label>
+                <span data-i18n="kybEinTin">EIN/TIN (or non-US equivalent)</span>
+                <input
+                  type="text"
+                  name="einTin"
+                  data-i18n-placeholder="kybEinTinPlaceholder"
+                  placeholder="Enter EIN/TIN or equivalent"
+                  required
+                />
+              </label>
+              <label>
+                <span data-i18n="kybCountry">Country/Region of Registration</span>
+                <select name="country" required>
+                  <option value="" disabled selected data-i18n="kybSelectCountry">
+                    Select country/region
+                  </option>
+                  <option value="us">United States</option>
+                  <option value="sg">Singapore</option>
+                  <option value="hk">Hong Kong</option>
+                  <option value="cn">China</option>
+                  <option value="gb">United Kingdom</option>
+                  <option value="de">Germany</option>
+                  <option value="fr">France</option>
+                  <option value="jp">Japan</option>
+                  <option value="kr">South Korea</option>
+                  <option value="au">Australia</option>
+                  <option value="ca">Canada</option>
+                  <option value="in">India</option>
+                  <option value="ae">United Arab Emirates</option>
+                  <option value="ch">Switzerland</option>
+                  <option value="nl">Netherlands</option>
+                  <option value="it">Italy</option>
+                  <option value="es">Spain</option>
+                  <option value="se">Sweden</option>
+                  <option value="vn">Vietnam</option>
+                  <option value="ky">Cayman Islands</option>
+                  <option value="kn">Saint Kitts and Nevis</option>
+                  <option value="vg">British Virgin Islands</option>
+                </select>
+              </label>
+              <label>
+                <span data-i18n="kybEntityType">Business Entity Type</span>
+                <select name="entityType" required>
+                  <option value="" disabled selected data-i18n="kybSelectEntityType">
+                    Select entity type
+                  </option>
+                  <option value="corporation" data-i18n="kybEntityCorporation">Corporation</option>
+                  <option value="llc" data-i18n="kybEntityLLC">LLC</option>
+                  <option value="partnership" data-i18n="kybEntityPartnership">Partnership</option>
+                  <option value="sole_proprietorship" data-i18n="kybEntitySoleProprietorship">Sole Proprietorship</option>
+                  <option value="other" data-i18n="kybEntityOther">Other</option>
+                </select>
+              </label>
+              <label class="full-width">
+                <span data-i18n="kybBusinessDescription">Business Description</span>
+                <textarea
+                  name="businessDescription"
+                  rows="3"
+                  data-i18n-placeholder="kybBusinessDescriptionPlaceholder"
+                  placeholder="Summarize products, services, payment flows"
+                  required
+                ></textarea>
+              </label>
+              <label class="full-width">
+                <span data-i18n="kybBusinessWebsite">Business Website</span>
+                <input
+                  type="url"
+                  name="businessWebsite"
+                  data-i18n-placeholder="kybBusinessWebsitePlaceholder"
+                  placeholder="https://example.com"
+                />
+              </label>
+              <label>
+                <span data-i18n="kybDaoStatus">DAO Status</span>
+                <select name="daoStatus" required>
+                  <option value="" disabled selected data-i18n="kybSelectDaoStatus">
+                    Select DAO status
+                  </option>
+                  <option value="yes" data-i18n="kybDaoYes">Yes</option>
+                  <option value="no" data-i18n="kybDaoNo">No</option>
+                </select>
               </label>
             </div>
-            <div class="file-field">
-              <p data-i18n="kybDocCertificateIncorp">Certificate of Incorporation</p>
-              <label class="upload-btn">
-                <input type="file" name="certificateIncorporation" />
-                <span data-i18n="kybUploadCertificate">Upload Certificate</span>
-              </label>
-            </div>
-            <div class="file-field">
-              <p data-i18n="kybDocMoa">Memorandum of Association</p>
-              <label class="upload-btn">
-                <input type="file" name="moa" />
-                <span data-i18n="kybUploadDocument">Upload Document</span>
-              </label>
-            </div>
-            <div class="file-field">
-              <p data-i18n="kybDocAoa">Articles of Association</p>
-              <label class="upload-btn">
-                <input type="file" name="aoa" />
-                <span data-i18n="kybUploadDocument">Upload Document</span>
-              </label>
-            </div>
-          </div>
-        </section>
+          </section>
 
-        <section>
-          <h3 data-i18n="kybUboTitle">UBO &amp; Director Information</h3>
-          <div class="kyb-grid">
-            <label>
-              <span data-i18n="kybUboName">Full legal name</span>
-              <input
-                type="text"
-                placeholder="e.g. Chen Wei"
-                data-i18n-placeholder="kybUboNamePlaceholder"
-              />
-            </label>
-            <label>
-              <span data-i18n="kybUboNationality">Nationality</span>
-              <input
-                type="text"
-                placeholder="Singapore"
-                data-i18n-placeholder="kybUboNationalityPlaceholder"
-              />
-            </label>
-            <label>
-              <span data-i18n="kybUboIdType">Identity document type</span>
-              <select>
-                <option value="" disabled selected data-i18n="kybSelectIdType">
-                  Select ID type
-                </option>
-                <option value="passport" data-i18n="kybUboIdPassport">
-                  Passport
-                </option>
-                <option value="national_id" data-i18n="kybUboIdNationalId">
-                  National ID
-                </option>
-                <option value="driver_license" data-i18n="kybUboIdDriverLicense">
-                  Driver License
-                </option>
-              </select>
-            </label>
-            <label>
-              <span data-i18n="kybUboIdNumber">Document number</span>
-              <input
-                type="text"
-                placeholder="E12345678"
-                data-i18n-placeholder="kybUboIdNumberPlaceholder"
-              />
-            </label>
-            <label>
-              <span data-i18n="kybUboIdExpiry">Document expiry date</span>
-              <input type="date" />
-            </label>
-            <div class="upload-field full-width">
-              <span data-i18n="kybUboDocument">Upload identity document</span>
-              <label class="upload-btn">
-                <input type="file" name="uboDocument" />
-                <span data-i18n="kybUploadDocument">Upload Document</span>
+          <section>
+            <h3 data-i18n="kybEnhancedInfoTitle">Enhanced Business Information (Optional)</h3>
+            <div class="kyb-grid">
+              <label>
+                <span data-i18n="kybSourceOfFunds">Source of Funds</span>
+                <textarea
+                  name="sourceOfFunds"
+                  rows="2"
+                  data-i18n-placeholder="kybSourceOfFundsPlaceholder"
+                  placeholder="Describe source of funds"
+                ></textarea>
+              </label>
+              <label>
+                <span data-i18n="kybEstimatedAnnualRevenue">Estimated Annual Revenue (USD)</span>
+                <select name="estimatedAnnualRevenue">
+                  <option value="" disabled selected data-i18n="kybSelectAnnualRevenue">
+                    Select revenue range
+                  </option>
+                  <option value="0-100k">0 - 100K USD</option>
+                  <option value="100k-500k">100K - 500K USD</option>
+                  <option value="500k-1m">500K - 1M USD</option>
+                  <option value="1m-5m">1M - 5M USD</option>
+                  <option value="5m-10m">5M - 10M USD</option>
+                  <option value="10m+">10M+ USD</option>
+                </select>
+              </label>
+              <label>
+                <span data-i18n="kybExpectedMonthlyVolume">Expected Monthly Transaction Volume (USD)</span>
+                <select name="expectedMonthlyVolume">
+                  <option value="" disabled selected data-i18n="kybSelectVolume">
+                    Select monthly volume range
+                  </option>
+                  <option value="0-1M">0 - 1M USD</option>
+                  <option value="1-5M">1M - 5M USD</option>
+                  <option value="5-10M">5M - 10M USD</option>
+                  <option value="10M+">10M+ USD</option>
+                </select>
+              </label>
+              <label>
+                <span data-i18n="kybPrimaryAccountPurpose">Primary Account Purpose</span>
+                <textarea
+                  name="primaryAccountPurpose"
+                  rows="2"
+                  data-i18n-placeholder="kybPrimaryAccountPurposePlaceholder"
+                  placeholder="Describe primary account purpose"
+                ></textarea>
+              </label>
+              <label>
+                <span data-i18n="kybHighRiskActivities">Disclosure of High Risk Activities</span>
+                <textarea
+                  name="highRiskActivities"
+                  rows="2"
+                  data-i18n-placeholder="kybHighRiskActivitiesPlaceholder"
+                  placeholder="Disclose any high risk activities"
+                ></textarea>
+              </label>
+              <label>
+                <span data-i18n="kybHighRiskGeographies">Disclosure of High Risk Geographies</span>
+                <textarea
+                  name="highRiskGeographies"
+                  rows="2"
+                  data-i18n-placeholder="kybHighRiskGeographiesPlaceholder"
+                  placeholder="Disclose operations in high risk geographies (Cuba, Iran, Myanmar, North Korea, Syria)"
+                ></textarea>
+              </label>
+              <label>
+                <span data-i18n="kybCustomerMoneyTransmission">Disclosure of Customer Money Transmission</span>
+                <select name="customerMoneyTransmission">
+                  <option value="" disabled selected data-i18n="kybSelectMoneyTransmission">
+                    Select option
+                  </option>
+                  <option value="yes" data-i18n="kybMoneyTransmissionYes">Yes - Moving customer funds</option>
+                  <option value="no" data-i18n="kybMoneyTransmissionNo">No</option>
+                </select>
               </label>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <button type="submit" class="primary-btn kyb-submit" data-i18n="kybSubmit">
-          Submit KYB
-        </button>
-      </form>
+          <section>
+            <h3 data-i18n="kybDocumentsTitle">Business Formation Documents</h3>
+            <p data-i18n="kybDocumentsDesc">
+              Please upload your business formation documents:
+            </p>
+            <div class="file-grid">
+              <div class="file-field">
+                <p data-i18n="kybDocBusinessCert">Business Registration Certificate</p>
+                <label class="upload-btn">
+                  <input type="file" name="businessCertificate" accept=".pdf,.jpg,.jpeg,.png" />
+                  <span data-i18n="kybUploadCertificate">Upload Certificate</span>
+                </label>
+              </div>
+              <div class="file-field">
+                <p data-i18n="kybDocCertificateIncorp">Certificate of Incorporation</p>
+                <label class="upload-btn">
+                  <input type="file" name="certificateIncorporation" accept=".pdf,.jpg,.jpeg,.png" />
+                  <span data-i18n="kybUploadCertificate">Upload Certificate</span>
+                </label>
+              </div>
+              <div class="file-field">
+                <p data-i18n="kybDocMoa">Memorandum of Association</p>
+                <label class="upload-btn">
+                  <input type="file" name="moa" accept=".pdf,.jpg,.jpeg,.png" />
+                  <span data-i18n="kybUploadDocument">Upload Document</span>
+                </label>
+              </div>
+              <div class="file-field">
+                <p data-i18n="kybDocAoa">Articles of Association</p>
+                <label class="upload-btn">
+                  <input type="file" name="aoa" accept=".pdf,.jpg,.jpeg,.png" />
+                  <span data-i18n="kybUploadDocument">Upload Document</span>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3 data-i18n="kybOwnershipDocumentsTitle">Business Ownership Documents</h3>
+            <p data-i18n="kybOwnershipDocumentsDesc">
+              Please upload business ownership documents:
+            </p>
+            <div class="file-grid">
+              <div class="file-field">
+                <p data-i18n="kybDocOwnership">Ownership Documents</p>
+                <label class="upload-btn">
+                  <input type="file" name="ownershipDocuments" accept=".pdf,.jpg,.jpeg,.png" />
+                  <span data-i18n="kybUploadDocument">Upload Document</span>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3 data-i18n="kybUboTitle">UBO &amp; Control Person Information</h3>
+            <p data-i18n="kybUboDesc">
+              KYC on all Beneficial Owners and/or Control Owners is required.
+            </p>
+            <div class="kyb-grid">
+              <label>
+                <span data-i18n="kybUboName">Full legal name</span>
+                <input
+                  type="text"
+                  name="uboName"
+                  placeholder="e.g. Chen Wei"
+                  data-i18n-placeholder="kybUboNamePlaceholder"
+                  required
+                />
+              </label>
+              <label>
+                <span data-i18n="kybUboNationality">Nationality</span>
+                <input
+                  type="text"
+                  name="uboNationality"
+                  placeholder="Singapore"
+                  data-i18n-placeholder="kybUboNationalityPlaceholder"
+                  required
+                />
+              </label>
+              <label>
+                <span data-i18n="kybUboIdType">Identity document type</span>
+                <select name="uboIdType" required>
+                  <option value="" disabled selected data-i18n="kybSelectIdType">
+                    Select ID type
+                  </option>
+                  <option value="passport" data-i18n="kybUboIdPassport">
+                    Passport
+                  </option>
+                  <option value="national_id" data-i18n="kybUboIdNationalId">
+                    National ID
+                  </option>
+                  <option value="driver_license" data-i18n="kybUboIdDriverLicense">
+                    Driver License
+                  </option>
+                </select>
+              </label>
+              <label>
+                <span data-i18n="kybUboIdNumber">Document number</span>
+                <input
+                  type="text"
+                  name="uboIdNumber"
+                  placeholder="E12345678"
+                  data-i18n-placeholder="kybUboIdNumberPlaceholder"
+                  required
+                />
+              </label>
+              <label>
+                <span data-i18n="kybUboIdExpiry">Document expiry date</span>
+                <input type="date" name="uboIdExpiry" required />
+              </label>
+              <div class="upload-field full-width">
+                <span data-i18n="kybUboDocument">Upload identity document</span>
+                <label class="upload-btn">
+                  <input type="file" name="uboDocument" accept=".pdf,.jpg,.jpeg,.png" required />
+                  <span data-i18n="kybUploadDocument">Upload Document</span>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3 data-i18n="kybProofOfAddressTitle">Proof of Address (if applicable)</h3>
+            <p data-i18n="kybProofOfAddressDesc">
+              Required when conflicting location signals are detected.
+            </p>
+            <div class="file-grid">
+              <div class="file-field">
+                <p data-i18n="kybDocProofOfAddress">Proof of Address Document</p>
+                <label class="upload-btn">
+                  <input type="file" name="proofOfAddress" accept=".pdf,.jpg,.jpeg,.png" />
+                  <span data-i18n="kybUploadDocument">Upload Document</span>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <button type="submit" class="primary-btn kyb-submit" data-i18n="kybSubmit">
+            Submit KYB
+          </button>
+        </form>
+
+        <!-- Individual Verification Form -->
+        <form class="kyb-form" id="individual-form" style="display: none;">
+          <section>
+            <h3 data-i18n="kybIndividualBasicTitle">Individual Basic Information</h3>
+            <p data-i18n="kybIndividualBasicDesc">Please provide your personal information for verification.</p>
+            <div class="kyb-grid">
+              <label>
+                <span data-i18n="kybIndividualCountry">Country</span>
+                <select name="individualCountry" required>
+                  <option value="" disabled selected data-i18n="kybSelectCountry">
+                    Select country/region
+                  </option>
+                  <option value="us">United States</option>
+                  <option value="sg">Singapore</option>
+                  <option value="hk">Hong Kong</option>
+                  <option value="cn">China</option>
+                  <option value="gb">United Kingdom</option>
+                  <option value="de">Germany</option>
+                  <option value="fr">France</option>
+                  <option value="jp">Japan</option>
+                  <option value="kr">South Korea</option>
+                  <option value="au">Australia</option>
+                  <option value="ca">Canada</option>
+                  <option value="in">India</option>
+                  <option value="ae">United Arab Emirates</option>
+                  <option value="ch">Switzerland</option>
+                  <option value="nl">Netherlands</option>
+                  <option value="it">Italy</option>
+                  <option value="es">Spain</option>
+                  <option value="se">Sweden</option>
+                  <option value="vn">Vietnam</option>
+                  <option value="ky">Cayman Islands</option>
+                  <option value="kn">Saint Kitts and Nevis</option>
+                  <option value="vg">British Virgin Islands</option>
+                </select>
+              </label>
+              <label class="full-width">
+                <span data-i18n="kybIndividualStreetAddress">Street Address</span>
+                <input
+                  type="text"
+                  name="streetAddress"
+                  data-i18n-placeholder="kybIndividualStreetAddressPlaceholder"
+                  placeholder="Enter street address"
+                  required
+                />
+              </label>
+              <label>
+                <span data-i18n="kybIndividualCity">City</span>
+                <input
+                  type="text"
+                  name="city"
+                  data-i18n-placeholder="kybIndividualCityPlaceholder"
+                  placeholder="Enter city"
+                  required
+                />
+              </label>
+              <label>
+                <span data-i18n="kybIndividualPostalCode">Postal Code</span>
+                <input
+                  type="text"
+                  name="postalCode"
+                  data-i18n-placeholder="kybIndividualPostalCodePlaceholder"
+                  placeholder="Enter postal code"
+                  required
+                />
+              </label>
+              <label>
+                <span data-i18n="kybIndividualProvinceState">Province / State</span>
+                <input
+                  type="text"
+                  name="provinceState"
+                  data-i18n-placeholder="kybIndividualProvinceStatePlaceholder"
+                  placeholder="Enter province or state"
+                  required
+                />
+              </label>
+              <label>
+                <span data-i18n="kybIndividualDateOfBirth">Date of Birth</span>
+                <input
+                  type="date"
+                  name="dateOfBirth"
+                  required
+                />
+              </label>
+              <label id="nationalIdField">
+                <span data-i18n="kybIndividualNationalId">National Identity Number</span>
+                <span class="field-note" data-i18n="kybIndividualNationalIdNote">(Required for non-USA residents)</span>
+                <input
+                  type="text"
+                  name="nationalId"
+                  data-i18n-placeholder="kybIndividualNationalIdPlaceholder"
+                  placeholder="Enter national identity number"
+                />
+              </label>
+              <label id="ssnField" style="display: none;">
+                <span data-i18n="kybIndividualSSN">Social Security Number</span>
+                <span class="field-note" data-i18n="kybIndividualSSNNote">(Required only for USA residents)</span>
+                <input
+                  type="text"
+                  name="ssn"
+                  data-i18n-placeholder="kybIndividualSSNPlaceholder"
+                  placeholder="Enter SSN"
+                />
+              </label>
+            </div>
+          </section>
+
+          <section>
+            <h3 data-i18n="kybIndividualIdVerificationTitle">ID Verification</h3>
+            <p data-i18n="kybIndividualIdVerificationDesc">
+              ID verification is optional for US residents with minimal payment activity.
+            </p>
+            <div class="kyb-grid">
+              <label>
+                <span data-i18n="kybIndividualIdType">Identity Document Type</span>
+                <select name="individualIdType">
+                  <option value="" disabled selected data-i18n="kybSelectIdType">
+                    Select ID type
+                  </option>
+                  <option value="passport" data-i18n="kybUboIdPassport">Passport</option>
+                  <option value="national_id" data-i18n="kybUboIdNationalId">National ID</option>
+                  <option value="driver_license" data-i18n="kybUboIdDriverLicense">Driver License</option>
+                </select>
+              </label>
+              <label>
+                <span data-i18n="kybIndividualIdNumber">Document Number</span>
+                <input
+                  type="text"
+                  name="individualIdNumber"
+                  data-i18n-placeholder="kybUboIdNumberPlaceholder"
+                  placeholder="E12345678"
+                />
+              </label>
+              <label>
+                <span data-i18n="kybIndividualIdExpiry">Document Expiry Date</span>
+                <input type="date" name="individualIdExpiry" />
+              </label>
+              <div class="upload-field full-width">
+                <span data-i18n="kybIndividualIdDocument">Upload Identity Document</span>
+                <label class="upload-btn">
+                  <input type="file" name="individualIdDocument" accept=".pdf,.jpg,.jpeg,.png" />
+                  <span data-i18n="kybUploadDocument">Upload Document</span>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <button type="submit" class="primary-btn kyb-submit" data-i18n="kybSubmitIndividual">
+            Submit Individual Verification
+          </button>
+        </form>
       </section>
     </div>
 
@@ -276,29 +560,65 @@
           zh: {
             kybHeading: "KYB 企业认证",
             kybSubheading: "完成企业认证流程以满足监管要求",
+            kybToggleBusiness: "企业认证",
+            kybToggleIndividual: "个人认证",
             kybCompanyBasicTitle: "企业基础信息",
             kybBasicInfoTitle: "基础资料",
-            kybCompanyName: "企业名称",
+            kybLegalEntityName: "法人实体名称",
             kybCompanyNamePlaceholder: "例如：Lavas Labs Pte. Ltd.",
-            kybCompanyNameEnglish: "企业名称（英文）",
-            kybCompanyNameEnglishPlaceholder: "请输入英文注册名称",
-            kybBusinessRegNo: "工商注册号",
-            kybTaxRegNo: "税务登记号",
+            kybRegisteredAddress: "注册地址",
+            kybRegisteredAddressPlaceholder: "请输入注册地址",
+            kybPrincipalOperatingAddress: "主要经营地址",
+            kybPrincipalOperatingAddressPlaceholder: "请输入主要经营地址",
+            kybEinTin: "EIN/TIN（或非美国等效识别号）",
+            kybEinTinPlaceholder: "请输入 EIN/TIN 或等效识别号",
             kybCountry: "注册国家 / 地区",
             kybSelectCountry: "请选择国家 / 地区",
-            kybCompanyType: "企业类型",
-            kybIndustry: "所属行业",
-            kybRegistrationInfoTitle: "注册信息",
-            kybRegistrationDate: "注册日期",
-            kybRegisteredAddress: "注册地址",
-            kybBusinessInfoTitle: "业务信息",
-            kybBusinessScope: "经营范围",
-            kybBusinessScopePlaceholder: "描述持牌经营范围",
-            kybExpectedVolume: "预计月度交易量",
-            kybSelectVolume: "请选择月度交易区间",
+            kybEntityType: "企业实体类型",
+            kybSelectEntityType: "请选择实体类型",
+            kybEntityCorporation: "公司",
+            kybEntityLLC: "有限责任公司",
+            kybEntityPartnership: "合伙企业",
+            kybEntitySoleProprietorship: "独资企业",
+            kybEntityOther: "其他",
             kybBusinessDescription: "业务描述",
             kybBusinessDescriptionPlaceholder: "概述产品、服务与资金流",
-            kybUboTitle: "实控人 / 董事信息",
+            kybBusinessWebsite: "企业网站",
+            kybBusinessWebsitePlaceholder: "https://example.com",
+            kybDaoStatus: "DAO 状态",
+            kybSelectDaoStatus: "请选择 DAO 状态",
+            kybDaoYes: "是",
+            kybDaoNo: "否",
+            kybEnhancedInfoTitle: "增强业务信息（可选）",
+            kybSourceOfFunds: "资金来源",
+            kybSourceOfFundsPlaceholder: "描述资金来源",
+            kybEstimatedAnnualRevenue: "预估年收入（美元）",
+            kybSelectAnnualRevenue: "请选择收入范围",
+            kybExpectedMonthlyVolume: "预计月度交易量（美元）",
+            kybSelectVolume: "请选择月度交易区间",
+            kybPrimaryAccountPurpose: "主要账户用途",
+            kybPrimaryAccountPurposePlaceholder: "描述主要账户用途",
+            kybHighRiskActivities: "高风险活动披露",
+            kybHighRiskActivitiesPlaceholder: "披露任何高风险活动",
+            kybHighRiskGeographies: "高风险地区披露",
+            kybHighRiskGeographiesPlaceholder: "披露在高风险地区的业务（古巴、伊朗、缅甸、朝鲜、叙利亚）",
+            kybCustomerMoneyTransmission: "客户资金传输披露",
+            kybSelectMoneyTransmission: "请选择选项",
+            kybMoneyTransmissionYes: "是 - 转移客户资金",
+            kybMoneyTransmissionNo: "否",
+            kybDocumentsTitle: "企业成立文件",
+            kybDocumentsDesc: "请上传您的企业成立文件：",
+            kybDocBusinessCert: "营业执照",
+            kybDocCertificateIncorp: "公司注册证明",
+            kybDocMoa: "公司章程备忘录",
+            kybDocAoa: "公司章程",
+            kybOwnershipDocumentsTitle: "企业所有权文件",
+            kybOwnershipDocumentsDesc: "请上传企业所有权文件：",
+            kybDocOwnership: "所有权文件",
+            kybUploadCertificate: "上传证书",
+            kybUploadDocument: "上传文件",
+            kybUboTitle: "UBO 和控制人信息",
+            kybUboDesc: "需要对所有受益所有人和/或控制人进行 KYC。",
             kybUboName: "法定姓名",
             kybUboNamePlaceholder: "如：陈伟",
             kybUboNationality: "国籍",
@@ -312,48 +632,109 @@
             kybUboIdNumberPlaceholder: "如：E12345678",
             kybUboIdExpiry: "证件到期日",
             kybUboDocument: "上传证件影印件",
-            kybDocumentsTitle: "企业注册文件",
-            kybDocumentsDesc: "请上传以下企业注册文件：",
-            kybDocBusinessCert: "营业执照 / Business Registration Certificate",
-            kybDocCertificateIncorp: "公司注册证明 / Certificate of Incorporation",
-            kybDocMoa: "公司章程备忘录 / Memorandum of Association",
-            kybDocAoa: "公司章程 / Articles of Association",
-            kybUploadCertificate: "上传证书",
-            kybUploadDocument: "上传文件",
+            kybProofOfAddressTitle: "地址证明（如适用）",
+            kybProofOfAddressDesc: "当检测到位置信号冲突时需要提供。",
+            kybDocProofOfAddress: "地址证明文件",
             kybSubmit: "提交 KYB",
             kybPoint1: "企业资料与注册文件",
             kybPoint2: "实控人与董事合规信息",
             kybPoint3: "业务模式、交易规模与证明材料",
             kybBackToLogin: "← 返回登录",
+            kybIndividualBasicTitle: "个人基础信息",
+            kybIndividualBasicDesc: "请提供您的个人信息以进行验证。",
+            kybIndividualCountry: "国家",
+            kybIndividualStreetAddress: "街道地址",
+            kybIndividualStreetAddressPlaceholder: "请输入街道地址",
+            kybIndividualCity: "城市",
+            kybIndividualCityPlaceholder: "请输入城市",
+            kybIndividualPostalCode: "邮政编码",
+            kybIndividualPostalCodePlaceholder: "请输入邮政编码",
+            kybIndividualProvinceState: "省 / 州",
+            kybIndividualProvinceStatePlaceholder: "请输入省或州",
+            kybIndividualDateOfBirth: "出生日期",
+            kybIndividualNationalId: "国民身份证号",
+            kybIndividualNationalIdNote: "（非美国居民必填）",
+            kybIndividualNationalIdPlaceholder: "请输入国民身份证号",
+            kybIndividualSSN: "社会安全号码",
+            kybIndividualSSNNote: "（仅美国居民必填）",
+            kybIndividualSSNPlaceholder: "请输入 SSN",
+            kybIndividualIdVerificationTitle: "身份验证",
+            kybIndividualIdVerificationDesc: "对于支付活动最少的美国居民，身份验证是可选的。",
+            kybIndividualIdType: "身份文件类型",
+            kybIndividualIdNumber: "文件号码",
+            kybIndividualIdExpiry: "文件到期日期",
+            kybIndividualIdDocument: "上传身份文件",
+            kybSubmitIndividual: "提交个人验证",
+            kybIndividualHeading: "个人认证",
+            kybIndividualSubheading: "完成个人认证流程以满足监管要求",
+            kybIndividualPoint1: "个人基本信息与地址证明",
+            kybIndividualPoint2: "身份文件验证",
+            kybIndividualPoint3: "身份号码与合规信息",
           },
           en: {
             kybHeading: "KYB Company Verification",
             kybSubheading:
               "Complete your company verification process to comply with regulatory requirements",
+            kybToggleBusiness: "Business Verification",
+            kybToggleIndividual: "Individual Verification",
             kybCompanyBasicTitle: "Company Basic Information",
             kybBasicInfoTitle: "Basic Information",
-            kybCompanyName: "Company Name",
+            kybLegalEntityName: "Legal Entity Name",
             kybCompanyNamePlaceholder: "e.g. Lavas Labs Pte. Ltd.",
-            kybCompanyNameEnglish: "Company Name (English)",
-            kybCompanyNameEnglishPlaceholder: "Enter the English registered name",
-            kybBusinessRegNo: "Business Registration Number",
-            kybTaxRegNo: "Tax Registration Number",
+            kybRegisteredAddress: "Registered Address",
+            kybRegisteredAddressPlaceholder: "Enter registered address",
+            kybPrincipalOperatingAddress: "Principal Operating Address",
+            kybPrincipalOperatingAddressPlaceholder: "Enter principal operating address",
+            kybEinTin: "EIN/TIN (or non-US equivalent)",
+            kybEinTinPlaceholder: "Enter EIN/TIN or equivalent",
             kybCountry: "Country/Region of Registration",
             kybSelectCountry: "Select country/region",
-            kybCompanyType: "Company Type",
-            kybIndustry: "Industry",
-            kybRegistrationInfoTitle: "Registration Information",
-            kybRegistrationDate: "Registration Date",
-            kybRegisteredAddress: "Registered Address",
-            kybBusinessInfoTitle: "Business Information",
-            kybBusinessScope: "Business Scope",
-            kybBusinessScopePlaceholder: "Describe licensed business scope",
-            kybExpectedVolume: "Expected Monthly Volume",
-            kybSelectVolume: "Select monthly volume range",
+            kybEntityType: "Business Entity Type",
+            kybSelectEntityType: "Select entity type",
+            kybEntityCorporation: "Corporation",
+            kybEntityLLC: "LLC",
+            kybEntityPartnership: "Partnership",
+            kybEntitySoleProprietorship: "Sole Proprietorship",
+            kybEntityOther: "Other",
             kybBusinessDescription: "Business Description",
             kybBusinessDescriptionPlaceholder:
               "Summarize products, services, payment flows",
-            kybUboTitle: "UBO & Director Information",
+            kybBusinessWebsite: "Business Website",
+            kybBusinessWebsitePlaceholder: "https://example.com",
+            kybDaoStatus: "DAO Status",
+            kybSelectDaoStatus: "Select DAO status",
+            kybDaoYes: "Yes",
+            kybDaoNo: "No",
+            kybEnhancedInfoTitle: "Enhanced Business Information (Optional)",
+            kybSourceOfFunds: "Source of Funds",
+            kybSourceOfFundsPlaceholder: "Describe source of funds",
+            kybEstimatedAnnualRevenue: "Estimated Annual Revenue (USD)",
+            kybSelectAnnualRevenue: "Select revenue range",
+            kybExpectedMonthlyVolume: "Expected Monthly Transaction Volume (USD)",
+            kybSelectVolume: "Select monthly volume range",
+            kybPrimaryAccountPurpose: "Primary Account Purpose",
+            kybPrimaryAccountPurposePlaceholder: "Describe primary account purpose",
+            kybHighRiskActivities: "Disclosure of High Risk Activities",
+            kybHighRiskActivitiesPlaceholder: "Disclose any high risk activities",
+            kybHighRiskGeographies: "Disclosure of High Risk Geographies",
+            kybHighRiskGeographiesPlaceholder: "Disclose operations in high risk geographies (Cuba, Iran, Myanmar, North Korea, Syria)",
+            kybCustomerMoneyTransmission: "Disclosure of Customer Money Transmission",
+            kybSelectMoneyTransmission: "Select option",
+            kybMoneyTransmissionYes: "Yes - Moving customer funds",
+            kybMoneyTransmissionNo: "No",
+            kybDocumentsTitle: "Business Formation Documents",
+            kybDocumentsDesc: "Please upload your business formation documents:",
+            kybDocBusinessCert: "Business Registration Certificate",
+            kybDocCertificateIncorp: "Certificate of Incorporation",
+            kybDocMoa: "Memorandum of Association",
+            kybDocAoa: "Articles of Association",
+            kybOwnershipDocumentsTitle: "Business Ownership Documents",
+            kybOwnershipDocumentsDesc: "Please upload business ownership documents:",
+            kybDocOwnership: "Ownership Documents",
+            kybUploadCertificate: "Upload Certificate",
+            kybUploadDocument: "Upload Document",
+            kybUboTitle: "UBO & Control Person Information",
+            kybUboDesc: "KYC on all Beneficial Owners and/or Control Owners is required.",
             kybUboName: "Full legal name",
             kybUboNamePlaceholder: "e.g. Chen Wei",
             kybUboNationality: "Nationality",
@@ -367,46 +748,107 @@
             kybUboIdNumberPlaceholder: "e.g. E12345678",
             kybUboIdExpiry: "Document expiry date",
             kybUboDocument: "Upload identity document",
-            kybDocumentsTitle: "Company Registration Documents",
-            kybDocumentsDesc: "Please upload your company registration documents:",
-            kybDocBusinessCert: "Business Registration Certificate",
-            kybDocCertificateIncorp: "Certificate of Incorporation",
-            kybDocMoa: "Memorandum of Association",
-            kybDocAoa: "Articles of Association",
-            kybUploadCertificate: "Upload Certificate",
-            kybUploadDocument: "Upload Document",
+            kybProofOfAddressTitle: "Proof of Address (if applicable)",
+            kybProofOfAddressDesc: "Required when conflicting location signals are detected.",
+            kybDocProofOfAddress: "Proof of Address Document",
             kybSubmit: "Submit KYB",
             kybPoint1: "Company profile & registration documents",
             kybPoint2: "UBO and director compliance data",
             kybPoint3: "Business model, volume & supporting files",
             kybBackToLogin: "← Back to login",
+            kybIndividualBasicTitle: "Individual Basic Information",
+            kybIndividualBasicDesc: "Please provide your personal information for verification.",
+            kybIndividualCountry: "Country",
+            kybIndividualStreetAddress: "Street Address",
+            kybIndividualStreetAddressPlaceholder: "Enter street address",
+            kybIndividualCity: "City",
+            kybIndividualCityPlaceholder: "Enter city",
+            kybIndividualPostalCode: "Postal Code",
+            kybIndividualPostalCodePlaceholder: "Enter postal code",
+            kybIndividualProvinceState: "Province / State",
+            kybIndividualProvinceStatePlaceholder: "Enter province or state",
+            kybIndividualDateOfBirth: "Date of Birth",
+            kybIndividualNationalId: "National Identity Number",
+            kybIndividualNationalIdNote: "(Required for non-USA residents)",
+            kybIndividualNationalIdPlaceholder: "Enter national identity number",
+            kybIndividualSSN: "Social Security Number",
+            kybIndividualSSNNote: "(Required only for USA residents)",
+            kybIndividualSSNPlaceholder: "Enter SSN",
+            kybIndividualIdVerificationTitle: "ID Verification",
+            kybIndividualIdVerificationDesc: "ID verification is optional for US residents with minimal payment activity.",
+            kybIndividualIdType: "Identity Document Type",
+            kybIndividualIdNumber: "Document Number",
+            kybIndividualIdExpiry: "Document Expiry Date",
+            kybIndividualIdDocument: "Upload Identity Document",
+            kybSubmitIndividual: "Submit Individual Verification",
+            kybIndividualHeading: "Individual Verification",
+            kybIndividualSubheading: "Complete your individual verification process to comply with regulatory requirements",
+            kybIndividualPoint1: "Personal information & address verification",
+            kybIndividualPoint2: "Identity document verification",
+            kybIndividualPoint3: "Identity number & compliance information",
           },
           ja: {
             kybHeading: "KYB 企業認証",
             kybSubheading: "規制要件を満たすために企業認証プロセスを完了してください",
+            kybToggleBusiness: "企業認証",
+            kybToggleIndividual: "個人認証",
             kybCompanyBasicTitle: "企業基本情報",
             kybBasicInfoTitle: "基本データ",
-            kybCompanyName: "会社名",
+            kybLegalEntityName: "法人名",
             kybCompanyNamePlaceholder: "例：Lavas Labs Pte. Ltd.",
-            kybCompanyNameEnglish: "会社名（英語）",
-            kybCompanyNameEnglishPlaceholder: "英語登録名を入力してください",
-            kybBusinessRegNo: "商業登録番号",
-            kybTaxRegNo: "税務登録番号",
+            kybRegisteredAddress: "登録住所",
+            kybRegisteredAddressPlaceholder: "登録住所を入力",
+            kybPrincipalOperatingAddress: "主要営業住所",
+            kybPrincipalOperatingAddressPlaceholder: "主要営業住所を入力",
+            kybEinTin: "EIN/TIN（または非米国相当の識別番号）",
+            kybEinTinPlaceholder: "EIN/TIN または相当の識別番号を入力",
             kybCountry: "登録国 / 地域",
             kybSelectCountry: "国 / 地域を選択",
-            kybCompanyType: "会社形態",
-            kybIndustry: "業種",
-            kybRegistrationInfoTitle: "登録情報",
-            kybRegistrationDate: "登録日",
-            kybRegisteredAddress: "登録住所",
-            kybBusinessInfoTitle: "事業情報",
-            kybBusinessScope: "事業範囲",
-            kybBusinessScopePlaceholder: "許認可されている事業範囲を記載",
-            kybExpectedVolume: "想定月間取引額",
-            kybSelectVolume: "月間ボリューム帯を選択",
+            kybEntityType: "事業体タイプ",
+            kybSelectEntityType: "事業体タイプを選択",
+            kybEntityCorporation: "株式会社",
+            kybEntityLLC: "LLC",
+            kybEntityPartnership: "パートナーシップ",
+            kybEntitySoleProprietorship: "個人事業",
+            kybEntityOther: "その他",
             kybBusinessDescription: "事業概要",
             kybBusinessDescriptionPlaceholder: "製品・サービス・資金フローを要約",
-            kybUboTitle: "実質支配者 / 取締役情報",
+            kybBusinessWebsite: "企業ウェブサイト",
+            kybBusinessWebsitePlaceholder: "https://example.com",
+            kybDaoStatus: "DAO ステータス",
+            kybSelectDaoStatus: "DAO ステータスを選択",
+            kybDaoYes: "はい",
+            kybDaoNo: "いいえ",
+            kybEnhancedInfoTitle: "拡張事業情報（任意）",
+            kybSourceOfFunds: "資金源",
+            kybSourceOfFundsPlaceholder: "資金源を説明",
+            kybEstimatedAnnualRevenue: "推定年間収益（USD）",
+            kybSelectAnnualRevenue: "収益範囲を選択",
+            kybExpectedMonthlyVolume: "想定月間取引額（USD）",
+            kybSelectVolume: "月間ボリューム帯を選択",
+            kybPrimaryAccountPurpose: "主要アカウント目的",
+            kybPrimaryAccountPurposePlaceholder: "主要アカウント目的を説明",
+            kybHighRiskActivities: "ハイリスク活動の開示",
+            kybHighRiskActivitiesPlaceholder: "ハイリスク活動を開示",
+            kybHighRiskGeographies: "ハイリスク地域の開示",
+            kybHighRiskGeographiesPlaceholder: "ハイリスク地域での事業を開示（キューバ、イラン、ミャンマー、北朝鮮、シリア）",
+            kybCustomerMoneyTransmission: "顧客資金送金の開示",
+            kybSelectMoneyTransmission: "オプションを選択",
+            kybMoneyTransmissionYes: "はい - 顧客資金を移動",
+            kybMoneyTransmissionNo: "いいえ",
+            kybDocumentsTitle: "事業設立書類",
+            kybDocumentsDesc: "事業設立書類をアップロードしてください：",
+            kybDocBusinessCert: "商業登録証明書",
+            kybDocCertificateIncorp: "設立証明書",
+            kybDocMoa: "定款（Memorandum of Association）",
+            kybDocAoa: "定款（Articles of Association）",
+            kybOwnershipDocumentsTitle: "事業所有権書類",
+            kybOwnershipDocumentsDesc: "事業所有権書類をアップロードしてください：",
+            kybDocOwnership: "所有権書類",
+            kybUploadCertificate: "証明書をアップロード",
+            kybUploadDocument: "書類をアップロード",
+            kybUboTitle: "UBO および支配者情報",
+            kybUboDesc: "すべての受益所有者および/または支配者に対する KYC が必要です。",
             kybUboName: "氏名（英字）",
             kybUboNamePlaceholder: "例：Sho Tanaka",
             kybUboNationality: "国籍",
@@ -420,104 +862,225 @@
             kybUboIdNumberPlaceholder: "例：TZ1234567",
             kybUboIdExpiry: "有効期限",
             kybUboDocument: "身分証の写しをアップロード",
-            kybDocumentsTitle: "企業登録書類",
-            kybDocumentsDesc: "以下の企業登録書類をアップロードしてください。",
-            kybDocBusinessCert: "商業登録証明書",
-            kybDocCertificateIncorp: "設立証明書",
-            kybDocMoa: "定款（Memorandum of Association）",
-            kybDocAoa: "定款（Articles of Association）",
-            kybUploadCertificate: "証明書をアップロード",
-            kybUploadDocument: "書類をアップロード",
+            kybProofOfAddressTitle: "住所証明（該当する場合）",
+            kybProofOfAddressDesc: "位置信号の矛盾が検出された場合に必要です。",
+            kybDocProofOfAddress: "住所証明書類",
             kybSubmit: "KYB を提出",
             kybPoint1: "企業プロフィールと登録書類",
             kybPoint2: "実質支配者・取締役のコンプライアンス情報",
             kybPoint3: "ビジネスモデル・取引規模・裏付け資料",
             kybBackToLogin: "← ログインに戻る",
+            kybIndividualBasicTitle: "個人基本情報",
+            kybIndividualBasicDesc: "認証のために個人情報を提供してください。",
+            kybIndividualCountry: "国",
+            kybIndividualStreetAddress: "番地",
+            kybIndividualStreetAddressPlaceholder: "番地を入力",
+            kybIndividualCity: "都市",
+            kybIndividualCityPlaceholder: "都市を入力",
+            kybIndividualPostalCode: "郵便番号",
+            kybIndividualPostalCodePlaceholder: "郵便番号を入力",
+            kybIndividualProvinceState: "都道府県 / 州",
+            kybIndividualProvinceStatePlaceholder: "都道府県または州を入力",
+            kybIndividualDateOfBirth: "生年月日",
+            kybIndividualNationalId: "国民識別番号",
+            kybIndividualNationalIdNote: "（非米国居住者必須）",
+            kybIndividualNationalIdPlaceholder: "国民識別番号を入力",
+            kybIndividualSSN: "社会保障番号",
+            kybIndividualSSNNote: "（米国居住者のみ必須）",
+            kybIndividualSSNPlaceholder: "SSN を入力",
+            kybIndividualIdVerificationTitle: "身分証明",
+            kybIndividualIdVerificationDesc: "最小限の支払い活動がある米国居住者にとって、身分証明は任意です。",
+            kybIndividualIdType: "身分証明書タイプ",
+            kybIndividualIdNumber: "証明書番号",
+            kybIndividualIdExpiry: "証明書有効期限",
+            kybIndividualIdDocument: "身分証明書をアップロード",
+            kybSubmitIndividual: "個人認証を提出",
+            kybIndividualHeading: "個人認証",
+            kybIndividualSubheading: "規制要件を満たすために個人認証プロセスを完了してください",
+            kybIndividualPoint1: "個人基本情報と住所証明",
+            kybIndividualPoint2: "身分証明書の検証",
+            kybIndividualPoint3: "身分証明番号とコンプライアンス情報",
           },
           de: {
             kybHeading: "KYB-Unternehmensprüfung",
             kybSubheading:
               "Schließen Sie den Unternehmensverifizierungsprozess ab, um regulatorische Anforderungen zu erfüllen",
+            kybToggleBusiness: "Unternehmensprüfung",
+            kybToggleIndividual: "Personenprüfung",
             kybCompanyBasicTitle: "Grunddaten des Unternehmens",
             kybBasicInfoTitle: "Basisinformationen",
-            kybCompanyName: "Firmenname",
-            kybCompanyNamePlaceholder: "z. B. Lavas Labs Pte. Ltd.",
-            kybCompanyNameEnglish: "Firmenname (Englisch)",
-            kybCompanyNameEnglishPlaceholder:
-              "Geben Sie den eingetragenen englischen Namen ein",
-            kybBusinessRegNo: "Handelsregisternummer",
-            kybTaxRegNo: "Steuernummer",
+            kybLegalEntityName: "Rechtsträgername",
+            kybCompanyNamePlaceholder: "z. B. Lavas Labs Pte. Ltd.",
+            kybRegisteredAddress: "Registrierte Anschrift",
+            kybRegisteredAddressPlaceholder: "Registrierte Anschrift eingeben",
+            kybPrincipalOperatingAddress: "Hauptgeschäftsadresse",
+            kybPrincipalOperatingAddressPlaceholder: "Hauptgeschäftsadresse eingeben",
+            kybEinTin: "EIN/TIN (oder nicht-US-Äquivalent)",
+            kybEinTinPlaceholder: "EIN/TIN oder Äquivalent eingeben",
             kybCountry: "Registrierungsland / -region",
             kybSelectCountry: "Land / Region auswählen",
-            kybCompanyType: "Unternehmensform",
-            kybIndustry: "Branche",
-            kybRegistrationInfoTitle: "Registerangaben",
-            kybRegistrationDate: "Registrierungsdatum",
-            kybRegisteredAddress: "Registrierte Anschrift",
-            kybBusinessInfoTitle: "Geschäftsinformationen",
-            kybBusinessScope: "Geschäftsbereich",
-            kybBusinessScopePlaceholder: "Beschreiben Sie den lizenzierten Geschäftsbereich",
-            kybExpectedVolume: "Erwartetes Monatsvolumen",
-            kybSelectVolume: "Monatliches Volumen wählen",
+            kybEntityType: "Unternehmensform",
+            kybSelectEntityType: "Unternehmensform auswählen",
+            kybEntityCorporation: "Kapitalgesellschaft",
+            kybEntityLLC: "LLC",
+            kybEntityPartnership: "Personengesellschaft",
+            kybEntitySoleProprietorship: "Einzelunternehmen",
+            kybEntityOther: "Sonstiges",
             kybBusinessDescription: "Geschäftsbeschreibung",
             kybBusinessDescriptionPlaceholder:
               "Produkte, Dienstleistungen und Zahlungsflüsse skizzieren",
+            kybBusinessWebsite: "Unternehmenswebsite",
+            kybBusinessWebsitePlaceholder: "https://example.com",
+            kybDaoStatus: "DAO-Status",
+            kybSelectDaoStatus: "DAO-Status auswählen",
+            kybDaoYes: "Ja",
+            kybDaoNo: "Nein",
+            kybEnhancedInfoTitle: "Erweiterte Geschäftsinformationen (Optional)",
+            kybSourceOfFunds: "Herkunft der Mittel",
+            kybSourceOfFundsPlaceholder: "Herkunft der Mittel beschreiben",
+            kybEstimatedAnnualRevenue: "Geschätzte jährliche Einnahmen (USD)",
+            kybSelectAnnualRevenue: "Einnahmenbereich auswählen",
+            kybExpectedMonthlyVolume: "Erwartetes monatliches Transaktionsvolumen (USD)",
+            kybSelectVolume: "Monatliches Volumen wählen",
+            kybPrimaryAccountPurpose: "Hauptzweck des Kontos",
+            kybPrimaryAccountPurposePlaceholder: "Hauptzweck des Kontos beschreiben",
+            kybHighRiskActivities: "Offenlegung von Hochrisikoaktivitäten",
+            kybHighRiskActivitiesPlaceholder: "Hochrisikoaktivitäten offenlegen",
+            kybHighRiskGeographies: "Offenlegung von Hochrisikoregionen",
+            kybHighRiskGeographiesPlaceholder: "Geschäftstätigkeiten in Hochrisikoregionen offenlegen (Kuba, Iran, Myanmar, Nordkorea, Syrien)",
+            kybCustomerMoneyTransmission: "Offenlegung der Kundenüberweisungen",
+            kybSelectMoneyTransmission: "Option auswählen",
+            kybMoneyTransmissionYes: "Ja - Kundenmittel werden bewegt",
+            kybMoneyTransmissionNo: "Nein",
+            kybDocumentsTitle: "Unternehmensgründungsdokumente",
+            kybDocumentsDesc: "Bitte laden Sie Ihre Unternehmensgründungsdokumente hoch:",
+            kybDocBusinessCert: "Gewerberegistrierung",
+            kybDocCertificateIncorp: "Gründungsurkunde",
+            kybDocMoa: "Memorandum of Association",
+            kybDocAoa: "Articles of Association",
+            kybOwnershipDocumentsTitle: "Unternehmenseigentumsdokumente",
+            kybOwnershipDocumentsDesc: "Bitte laden Sie Unternehmenseigentumsdokumente hoch:",
+            kybDocOwnership: "Eigentumsdokumente",
+            kybUploadCertificate: "Zertifikat hochladen",
+            kybUploadDocument: "Dokument hochladen",
             kybUboTitle: "UBO- und Geschäftsleiterdaten",
+            kybUboDesc: "KYC für alle wirtschaftlich Berechtigten und/oder Geschäftsleiter ist erforderlich.",
             kybUboName: "Vollständiger Name",
-            kybUboNamePlaceholder: "z. B. Anna Müller",
+            kybUboNamePlaceholder: "z. B. Anna Müller",
             kybUboNationality: "Staatsangehörigkeit",
-            kybUboNationalityPlaceholder: "z. B. Deutschland / Singapur",
+            kybUboNationalityPlaceholder: "z. B. Deutschland / Singapur",
             kybUboIdType: "Ausweisart",
             kybSelectIdType: "Ausweisart wählen",
             kybUboIdPassport: "Reisepass",
             kybUboIdNationalId: "Personalausweis",
             kybUboIdDriverLicense: "Führerschein",
             kybUboIdNumber: "Ausweisnummer",
-            kybUboIdNumberPlaceholder: "z. B. C1234567",
+            kybUboIdNumberPlaceholder: "z. B. C1234567",
             kybUboIdExpiry: "Ablaufdatum",
             kybUboDocument: "Ausweiskopie hochladen",
-            kybDocumentsTitle: "Unternehmensregisterdokumente",
-            kybDocumentsDesc: "Bitte laden Sie Ihre Unternehmensregisterdokumente hoch:",
-            kybDocBusinessCert: "Gewerberegistrierung / Business Registration Certificate",
-            kybDocCertificateIncorp: "Gründungsurkunde / Certificate of Incorporation",
-            kybDocMoa: "Memorandum of Association",
-            kybDocAoa: "Articles of Association",
-            kybUploadCertificate: "Zertifikat hochladen",
-            kybUploadDocument: "Dokument hochladen",
+            kybProofOfAddressTitle: "Adressnachweis (falls zutreffend)",
+            kybProofOfAddressDesc: "Erforderlich, wenn widersprüchliche Standortsignale erkannt werden.",
+            kybDocProofOfAddress: "Adressnachweisdokument",
             kybSubmit: "KYB einreichen",
             kybPoint1: "Unternehmensprofil & Registerdokumente",
             kybPoint2: "UBO- und Geschäftsleiter-Compliance",
             kybPoint3: "Geschäftsmodell, Volumen & Nachweise",
             kybBackToLogin: "← Zurück zum Login",
+            kybIndividualBasicTitle: "Personenbezogene Grundinformationen",
+            kybIndividualBasicDesc: "Bitte geben Sie Ihre persönlichen Informationen zur Verifizierung an.",
+            kybIndividualCountry: "Land",
+            kybIndividualStreetAddress: "Straßenadresse",
+            kybIndividualStreetAddressPlaceholder: "Straßenadresse eingeben",
+            kybIndividualCity: "Stadt",
+            kybIndividualCityPlaceholder: "Stadt eingeben",
+            kybIndividualPostalCode: "Postleitzahl",
+            kybIndividualPostalCodePlaceholder: "Postleitzahl eingeben",
+            kybIndividualProvinceState: "Provinz / Bundesstaat",
+            kybIndividualProvinceStatePlaceholder: "Provinz oder Bundesstaat eingeben",
+            kybIndividualDateOfBirth: "Geburtsdatum",
+            kybIndividualNationalId: "Nationale Identifikationsnummer",
+            kybIndividualNationalIdNote: "(Erforderlich für Nicht-US-Bewohner)",
+            kybIndividualNationalIdPlaceholder: "Nationale Identifikationsnummer eingeben",
+            kybIndividualSSN: "Sozialversicherungsnummer",
+            kybIndividualSSNNote: "(Nur für US-Bewohner erforderlich)",
+            kybIndividualSSNPlaceholder: "SSN eingeben",
+            kybIndividualIdVerificationTitle: "Ausweisprüfung",
+            kybIndividualIdVerificationDesc: "Ausweisprüfung ist für US-Bewohner mit minimaler Zahlungsaktivität optional.",
+            kybIndividualIdType: "Ausweisdokumenttyp",
+            kybIndividualIdNumber: "Dokumentnummer",
+            kybIndividualIdExpiry: "Dokumentablaufdatum",
+            kybIndividualIdDocument: "Ausweisdokument hochladen",
+            kybSubmitIndividual: "Personenprüfung einreichen",
+            kybIndividualHeading: "Personenprüfung",
+            kybIndividualSubheading: "Schließen Sie den Personenverifizierungsprozess ab, um regulatorische Anforderungen zu erfüllen",
+            kybIndividualPoint1: "Persönliche Informationen & Adressnachweis",
+            kybIndividualPoint2: "Ausweisdokumentprüfung",
+            kybIndividualPoint3: "Ausweisnummer & Compliance-Informationen",
           },
           vi: {
             kybHeading: "Xác minh doanh nghiệp KYB",
             kybSubheading:
               "Hoàn tất quy trình xác minh doanh nghiệp để tuân thủ yêu cầu pháp lý",
+            kybToggleBusiness: "Xác minh Doanh nghiệp",
+            kybToggleIndividual: "Xác minh Cá nhân",
             kybCompanyBasicTitle: "Thông tin cơ bản của công ty",
             kybBasicInfoTitle: "Thông tin cơ bản",
-            kybCompanyName: "Tên công ty",
+            kybLegalEntityName: "Tên pháp nhân",
             kybCompanyNamePlaceholder: "ví dụ: Lavas Labs Pte. Ltd.",
-            kybCompanyNameEnglish: "Tên công ty (tiếng Anh)",
-            kybCompanyNameEnglishPlaceholder: "Nhập tên đăng ký tiếng Anh",
-            kybBusinessRegNo: "Mã đăng ký kinh doanh",
-            kybTaxRegNo: "Mã số thuế",
+            kybRegisteredAddress: "Địa chỉ đăng ký",
+            kybRegisteredAddressPlaceholder: "Nhập địa chỉ đăng ký",
+            kybPrincipalOperatingAddress: "Địa chỉ hoạt động chính",
+            kybPrincipalOperatingAddressPlaceholder: "Nhập địa chỉ hoạt động chính",
+            kybEinTin: "EIN/TIN (hoặc mã tương đương không phải Mỹ)",
+            kybEinTinPlaceholder: "Nhập EIN/TIN hoặc mã tương đương",
             kybCountry: "Quốc gia/Khu vực đăng ký",
             kybSelectCountry: "Chọn quốc gia/khu vực",
-            kybCompanyType: "Loại hình doanh nghiệp",
-            kybIndustry: "Ngành nghề",
-            kybRegistrationInfoTitle: "Thông tin đăng ký",
-            kybRegistrationDate: "Ngày đăng ký",
-            kybRegisteredAddress: "Địa chỉ đăng ký",
-            kybBusinessInfoTitle: "Thông tin kinh doanh",
-            kybBusinessScope: "Phạm vi kinh doanh",
-            kybBusinessScopePlaceholder: "Mô tả phạm vi hoạt động được cấp phép",
-            kybExpectedVolume: "Sản lượng hàng tháng dự kiến",
-            kybSelectVolume: "Chọn mức sản lượng hàng tháng",
+            kybEntityType: "Loại hình doanh nghiệp",
+            kybSelectEntityType: "Chọn loại hình doanh nghiệp",
+            kybEntityCorporation: "Công ty cổ phần",
+            kybEntityLLC: "LLC",
+            kybEntityPartnership: "Công ty hợp danh",
+            kybEntitySoleProprietorship: "Doanh nghiệp tư nhân",
+            kybEntityOther: "Khác",
             kybBusinessDescription: "Mô tả doanh nghiệp",
             kybBusinessDescriptionPlaceholder:
               "Tóm tắt sản phẩm, dịch vụ, dòng tiền",
-            kybUboTitle: "Thông tin UBO & Giám đốc",
+            kybBusinessWebsite: "Trang web doanh nghiệp",
+            kybBusinessWebsitePlaceholder: "https://example.com",
+            kybDaoStatus: "Trạng thái DAO",
+            kybSelectDaoStatus: "Chọn trạng thái DAO",
+            kybDaoYes: "Có",
+            kybDaoNo: "Không",
+            kybEnhancedInfoTitle: "Thông tin Doanh nghiệp Nâng cao (Tùy chọn)",
+            kybSourceOfFunds: "Nguồn vốn",
+            kybSourceOfFundsPlaceholder: "Mô tả nguồn vốn",
+            kybEstimatedAnnualRevenue: "Doanh thu hàng năm ước tính (USD)",
+            kybSelectAnnualRevenue: "Chọn phạm vi doanh thu",
+            kybExpectedMonthlyVolume: "Khối lượng giao dịch hàng tháng dự kiến (USD)",
+            kybSelectVolume: "Chọn mức sản lượng hàng tháng",
+            kybPrimaryAccountPurpose: "Mục đích tài khoản chính",
+            kybPrimaryAccountPurposePlaceholder: "Mô tả mục đích tài khoản chính",
+            kybHighRiskActivities: "Tiết lộ Hoạt động Rủi ro Cao",
+            kybHighRiskActivitiesPlaceholder: "Tiết lộ bất kỳ hoạt động rủi ro cao nào",
+            kybHighRiskGeographies: "Tiết lộ Địa lý Rủi ro Cao",
+            kybHighRiskGeographiesPlaceholder: "Tiết lộ hoạt động ở các khu vực rủi ro cao (Cuba, Iran, Myanmar, Bắc Triều Tiên, Syria)",
+            kybCustomerMoneyTransmission: "Tiết lộ Chuyển tiền Khách hàng",
+            kybSelectMoneyTransmission: "Chọn tùy chọn",
+            kybMoneyTransmissionYes: "Có - Di chuyển tiền khách hàng",
+            kybMoneyTransmissionNo: "Không",
+            kybDocumentsTitle: "Tài liệu Thành lập Doanh nghiệp",
+            kybDocumentsDesc: "Vui lòng tải các tài liệu thành lập doanh nghiệp:",
+            kybDocBusinessCert: "Giấy chứng nhận đăng ký kinh doanh",
+            kybDocCertificateIncorp: "Giấy chứng nhận thành lập",
+            kybDocMoa: "Điều lệ công ty (Memorandum of Association)",
+            kybDocAoa: "Điều lệ hoạt động (Articles of Association)",
+            kybOwnershipDocumentsTitle: "Tài liệu Sở hữu Doanh nghiệp",
+            kybOwnershipDocumentsDesc: "Vui lòng tải tài liệu sở hữu doanh nghiệp:",
+            kybDocOwnership: "Tài liệu Sở hữu",
+            kybUploadCertificate: "Tải lên chứng nhận",
+            kybUploadDocument: "Tải lên tài liệu",
+            kybUboTitle: "Thông tin UBO & Người Kiểm soát",
+            kybUboDesc: "KYC cho tất cả Chủ sở hữu Thực tế và/hoặc Người Kiểm soát là bắt buộc.",
             kybUboName: "Họ tên đầy đủ",
             kybUboNamePlaceholder: "ví dụ: Nguyễn Anh Minh",
             kybUboNationality: "Quốc tịch",
@@ -531,19 +1094,44 @@
             kybUboIdNumberPlaceholder: "ví dụ: C123456789",
             kybUboIdExpiry: "Ngày hết hạn",
             kybUboDocument: "Tải bản sao giấy tờ",
-            kybDocumentsTitle: "Hồ sơ đăng ký doanh nghiệp",
-            kybDocumentsDesc: "Vui lòng tải các tài liệu đăng ký của doanh nghiệp:",
-            kybDocBusinessCert: "Giấy chứng nhận đăng ký kinh doanh",
-            kybDocCertificateIncorp: "Giấy chứng nhận thành lập (Certificate of Incorporation)",
-            kybDocMoa: "Điều lệ công ty (Memorandum of Association)",
-            kybDocAoa: "Điều lệ hoạt động (Articles of Association)",
-            kybUploadCertificate: "Tải lên chứng nhận",
-            kybUploadDocument: "Tải lên tài liệu",
+            kybProofOfAddressTitle: "Bằng chứng Địa chỉ (nếu áp dụng)",
+            kybProofOfAddressDesc: "Bắt buộc khi phát hiện tín hiệu vị trí mâu thuẫn.",
+            kybDocProofOfAddress: "Tài liệu Bằng chứng Địa chỉ",
             kybSubmit: "Gửi hồ sơ KYB",
             kybPoint1: "Hồ sơ doanh nghiệp & tài liệu đăng ký",
             kybPoint2: "Thông tin tuân thủ của UBO và giám đốc",
             kybPoint3: "Mô hình kinh doanh, sản lượng & hồ sơ chứng minh",
             kybBackToLogin: "← Quay lại đăng nhập",
+            kybIndividualBasicTitle: "Thông tin Cơ bản Cá nhân",
+            kybIndividualBasicDesc: "Vui lòng cung cấp thông tin cá nhân của bạn để xác minh.",
+            kybIndividualCountry: "Quốc gia",
+            kybIndividualStreetAddress: "Địa chỉ đường phố",
+            kybIndividualStreetAddressPlaceholder: "Nhập địa chỉ đường phố",
+            kybIndividualCity: "Thành phố",
+            kybIndividualCityPlaceholder: "Nhập thành phố",
+            kybIndividualPostalCode: "Mã bưu điện",
+            kybIndividualPostalCodePlaceholder: "Nhập mã bưu điện",
+            kybIndividualProvinceState: "Tỉnh / Bang",
+            kybIndividualProvinceStatePlaceholder: "Nhập tỉnh hoặc bang",
+            kybIndividualDateOfBirth: "Ngày sinh",
+            kybIndividualNationalId: "Số CMND/CCCD",
+            kybIndividualNationalIdNote: "(Bắt buộc cho cư dân không phải Mỹ)",
+            kybIndividualNationalIdPlaceholder: "Nhập số CMND/CCCD",
+            kybIndividualSSN: "Số An sinh Xã hội",
+            kybIndividualSSNNote: "(Chỉ bắt buộc cho cư dân Mỹ)",
+            kybIndividualSSNPlaceholder: "Nhập SSN",
+            kybIndividualIdVerificationTitle: "Xác minh ID",
+            kybIndividualIdVerificationDesc: "Xác minh ID là tùy chọn cho cư dân Mỹ có hoạt động thanh toán tối thiểu.",
+            kybIndividualIdType: "Loại Giấy tờ Tùy thân",
+            kybIndividualIdNumber: "Số Giấy tờ",
+            kybIndividualIdExpiry: "Ngày Hết hạn Giấy tờ",
+            kybIndividualIdDocument: "Tải Giấy tờ Tùy thân",
+            kybSubmitIndividual: "Gửi Xác minh Cá nhân",
+            kybIndividualHeading: "Xác minh Cá nhân",
+            kybIndividualSubheading: "Hoàn tất quy trình xác minh cá nhân để tuân thủ yêu cầu pháp lý",
+            kybIndividualPoint1: "Thông tin cá nhân & bằng chứng địa chỉ",
+            kybIndividualPoint2: "Xác minh giấy tờ tùy thân",
+            kybIndividualPoint3: "Số CMND/CCCD & thông tin tuân thủ",
           },
         };
 
@@ -557,6 +1145,7 @@
         function applyLanguage(lang) {
           const dict = translations[lang] || translations.zh;
           document.documentElement.lang = lang;
+          window.currentLang = lang; // Store current language globally
 
           textNodes.forEach((node) => {
             const key = node.dataset.i18n;
@@ -571,6 +1160,13 @@
               input.placeholder = dict[key];
             }
           });
+          
+          // Update sidebar content based on current verification type
+          const activeToggle = document.querySelector(".toggle-btn.active");
+          if (activeToggle) {
+            const type = activeToggle.dataset.type;
+            updateSidebarContent(type);
+          }
         }
 
         langButtons.forEach((button) => {
@@ -585,7 +1181,97 @@
           });
         });
 
+        // Verification type toggle
+        const toggleButtons = document.querySelectorAll(".toggle-btn");
+        const businessForm = document.getElementById("business-form");
+        const individualForm = document.getElementById("individual-form");
+        const individualCountrySelect = document.querySelector('select[name="individualCountry"]');
+        const nationalIdField = document.getElementById("nationalIdField");
+        const ssnField = document.getElementById("ssnField");
+        const nationalIdInput = document.querySelector('input[name="nationalId"]');
+        const ssnInput = document.querySelector('input[name="ssn"]');
+        const kybTitle = document.getElementById("kyb-title");
+        const kybSubheading = document.getElementById("kyb-subheading");
+        const kybPoints = document.getElementById("kyb-points");
+
+        function updateSidebarContent(type) {
+          const lang = window.currentLang || document.documentElement.lang || "zh";
+          const dict = translations[lang] || translations.zh;
+          
+          if (type === "business") {
+            kybTitle.setAttribute("data-i18n", "kybHeading");
+            kybSubheading.setAttribute("data-i18n", "kybSubheading");
+            kybTitle.textContent = dict.kybHeading || "KYB 企业认证";
+            kybSubheading.textContent = dict.kybSubheading || "完成企业认证流程以满足监管要求";
+            
+            const points = kybPoints.querySelectorAll("li");
+            if (points.length >= 3) {
+              points[0].setAttribute("data-i18n", "kybPoint1");
+              points[1].setAttribute("data-i18n", "kybPoint2");
+              points[2].setAttribute("data-i18n", "kybPoint3");
+              points[0].textContent = dict.kybPoint1 || "企业资料与注册文件";
+              points[1].textContent = dict.kybPoint2 || "实控人与董事合规信息";
+              points[2].textContent = dict.kybPoint3 || "业务模式、交易规模与证明材料";
+            }
+          } else {
+            kybTitle.setAttribute("data-i18n", "kybIndividualHeading");
+            kybSubheading.setAttribute("data-i18n", "kybIndividualSubheading");
+            kybTitle.textContent = dict.kybIndividualHeading || "个人认证";
+            kybSubheading.textContent = dict.kybIndividualSubheading || "完成个人认证流程以满足监管要求";
+            
+            const points = kybPoints.querySelectorAll("li");
+            if (points.length >= 3) {
+              points[0].setAttribute("data-i18n", "kybIndividualPoint1");
+              points[1].setAttribute("data-i18n", "kybIndividualPoint2");
+              points[2].setAttribute("data-i18n", "kybIndividualPoint3");
+              points[0].textContent = dict.kybIndividualPoint1 || "个人基本信息与地址证明";
+              points[1].textContent = dict.kybIndividualPoint2 || "身份文件验证";
+              points[2].textContent = dict.kybIndividualPoint3 || "身份号码与合规信息";
+            }
+          }
+        }
+
+        toggleButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const type = button.dataset.type;
+            toggleButtons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            if (type === "business") {
+              businessForm.style.display = "block";
+              individualForm.style.display = "none";
+            } else {
+              businessForm.style.display = "none";
+              individualForm.style.display = "block";
+            }
+            
+            // Update sidebar content
+            updateSidebarContent(type);
+          });
+        });
+
+        // Handle country change for individual form to show/hide SSN/National ID fields
+        if (individualCountrySelect) {
+          individualCountrySelect.addEventListener("change", (e) => {
+            const country = e.target.value;
+            if (country === "us") {
+              ssnField.style.display = "block";
+              nationalIdField.style.display = "none";
+              ssnInput.required = true;
+              nationalIdInput.required = false;
+            } else {
+              ssnField.style.display = "none";
+              nationalIdField.style.display = "block";
+              ssnInput.required = false;
+              nationalIdInput.required = true;
+            }
+          });
+        }
+
         applyLanguage("zh");
+        
+        // Initialize sidebar content on page load
+        updateSidebarContent("business");
       })();
     </script>
   </body>

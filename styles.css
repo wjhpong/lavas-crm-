@@ -574,6 +574,48 @@ textarea:focus {
   margin-top: 8px;
 }
 
+.verification-type-toggle {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  padding: 6px;
+  background: var(--surface-soft);
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.toggle-btn {
+  flex: 1;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-subtle);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+  color: var(--text-main);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.toggle-btn.active {
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(255, 30, 86, 0.3);
+}
+
+.field-note {
+  font-size: 0.85rem;
+  color: var(--text-subtle);
+  font-weight: 400;
+  margin-left: 8px;
+}
+
 @media (max-width: 960px) {
   .page {
     display: flex;
