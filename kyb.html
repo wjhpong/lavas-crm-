@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" id="html-root">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -167,16 +167,6 @@
                   data-i18n-placeholder="kybBusinessWebsitePlaceholder"
                   placeholder="https://example.com"
                 />
-              </label>
-              <label>
-                <span data-i18n="kybDaoStatus">DAO Status</span>
-                <select name="daoStatus" required>
-                  <option value="" disabled selected data-i18n="kybSelectDaoStatus">
-                    Select DAO status
-                  </option>
-                  <option value="yes" data-i18n="kybDaoYes">Yes</option>
-                  <option value="no" data-i18n="kybDaoNo">No</option>
-                </select>
               </label>
             </div>
           </section>
@@ -585,10 +575,6 @@
             kybBusinessDescriptionPlaceholder: "概述产品、服务与资金流",
             kybBusinessWebsite: "企业网站",
             kybBusinessWebsitePlaceholder: "https://example.com",
-            kybDaoStatus: "DAO 状态",
-            kybSelectDaoStatus: "请选择 DAO 状态",
-            kybDaoYes: "是",
-            kybDaoNo: "否",
             kybEnhancedInfoTitle: "增强业务信息（可选）",
             kybSourceOfFunds: "资金来源",
             kybSourceOfFundsPlaceholder: "描述资金来源",
@@ -701,10 +687,6 @@
               "Summarize products, services, payment flows",
             kybBusinessWebsite: "Business Website",
             kybBusinessWebsitePlaceholder: "https://example.com",
-            kybDaoStatus: "DAO Status",
-            kybSelectDaoStatus: "Select DAO status",
-            kybDaoYes: "Yes",
-            kybDaoNo: "No",
             kybEnhancedInfoTitle: "Enhanced Business Information (Optional)",
             kybSourceOfFunds: "Source of Funds",
             kybSourceOfFundsPlaceholder: "Describe source of funds",
@@ -815,10 +797,6 @@
             kybBusinessDescriptionPlaceholder: "製品・サービス・資金フローを要約",
             kybBusinessWebsite: "企業ウェブサイト",
             kybBusinessWebsitePlaceholder: "https://example.com",
-            kybDaoStatus: "DAO ステータス",
-            kybSelectDaoStatus: "DAO ステータスを選択",
-            kybDaoYes: "はい",
-            kybDaoNo: "いいえ",
             kybEnhancedInfoTitle: "拡張事業情報（任意）",
             kybSourceOfFunds: "資金源",
             kybSourceOfFundsPlaceholder: "資金源を説明",
@@ -931,10 +909,6 @@
               "Produkte, Dienstleistungen und Zahlungsflüsse skizzieren",
             kybBusinessWebsite: "Unternehmenswebsite",
             kybBusinessWebsitePlaceholder: "https://example.com",
-            kybDaoStatus: "DAO-Status",
-            kybSelectDaoStatus: "DAO-Status auswählen",
-            kybDaoYes: "Ja",
-            kybDaoNo: "Nein",
             kybEnhancedInfoTitle: "Erweiterte Geschäftsinformationen (Optional)",
             kybSourceOfFunds: "Herkunft der Mittel",
             kybSourceOfFundsPlaceholder: "Herkunft der Mittel beschreiben",
@@ -1047,10 +1021,6 @@
               "Tóm tắt sản phẩm, dịch vụ, dòng tiền",
             kybBusinessWebsite: "Trang web doanh nghiệp",
             kybBusinessWebsitePlaceholder: "https://example.com",
-            kybDaoStatus: "Trạng thái DAO",
-            kybSelectDaoStatus: "Chọn trạng thái DAO",
-            kybDaoYes: "Có",
-            kybDaoNo: "Không",
             kybEnhancedInfoTitle: "Thông tin Doanh nghiệp Nâng cao (Tùy chọn)",
             kybSourceOfFunds: "Nguồn vốn",
             kybSourceOfFundsPlaceholder: "Mô tả nguồn vốn",
@@ -1144,8 +1114,61 @@
 
         function applyLanguage(lang) {
           const dict = translations[lang] || translations.zh;
-          document.documentElement.lang = lang;
           window.currentLang = lang; // Store current language globally
+          
+          // Map language codes to full locale codes for date picker
+          const localeMap = {
+            zh: "zh-CN",
+            en: "en-US",
+            ja: "ja-JP",
+            de: "de-DE",
+            vi: "vi-VN"
+          };
+          
+          // Set HTML lang attribute for date picker localization
+          const fullLocale = localeMap[lang] || "zh-CN";
+          const oldLang = document.documentElement.lang;
+          document.documentElement.lang = fullLocale;
+          
+          // Close any open date pickers by blurring focused date inputs
+          const focusedDateInput = document.querySelector('input[type="date"]:focus');
+          if (focusedDateInput) {
+            focusedDateInput.blur();
+          }
+          
+          // Force date inputs to refresh by recreating them
+          // This ensures the date picker UI updates with the new language
+          const dateInputs = document.querySelectorAll('input[type="date"]');
+          dateInputs.forEach((input) => {
+            const parent = input.parentNode;
+            const currentValue = input.value;
+            const name = input.name;
+            const required = input.required;
+            const id = input.id;
+            const className = input.className;
+            const disabled = input.disabled;
+            const min = input.min;
+            const max = input.max;
+            
+            // Create a new date input with the same attributes
+            const newInput = document.createElement('input');
+            newInput.type = 'date';
+            newInput.name = name;
+            newInput.required = required;
+            newInput.setAttribute('lang', fullLocale);
+            if (id) newInput.id = id;
+            if (className) newInput.className = className;
+            if (disabled) newInput.disabled = disabled;
+            if (min) newInput.min = min;
+            if (max) newInput.max = max;
+            if (currentValue) newInput.value = currentValue;
+            
+            // Replace immediately to ensure lang attribute is applied
+            parent.replaceChild(newInput, input);
+          });
+          
+          // Trigger a small reflow to ensure browser processes the lang change
+          void document.documentElement.offsetHeight;
 
           textNodes.forEach((node) => {
             const key = node.dataset.i18n;
@@ -1158,6 +1181,15 @@
             const key = input.dataset.i18nPlaceholder;
             if (dict[key]) {
               input.placeholder = dict[key];
+            }
+          });
+          
+          // Update select option texts
+          const selectOptions = document.querySelectorAll('option[data-i18n]');
+          selectOptions.forEach((option) => {
+            const key = option.dataset.i18n;
+            if (dict[key]) {
+              option.textContent = dict[key];
             }
           });
           
