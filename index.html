@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lavas Labs CRM 登录</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <section class="language-fab" aria-label="Language selector">
+      <input type="checkbox" id="lang-toggle" />
+      <label for="lang-toggle" class="fab" title="Change language">🌐</label>
+      <div class="fab-menu" role="menu">
+        <button type="button" class="lang-option active" data-lang="zh">中文</button>
+        <button type="button" class="lang-option" data-lang="en">EN</button>
+        <button type="button" class="lang-option" data-lang="ja">日本語</button>
+        <button type="button" class="lang-option" data-lang="de">Deutsch</button>
+        <button type="button" class="lang-option" data-lang="vi">Tiếng Việt</button>
+      </div>
+    </section>
+    <div class="page">
+      <section class="hero">
+        <header class="brand">
+          <p class="brand-label" aria-label="Lavas Labs">LAVAS LABS</p>
+        </header>
+
+        <div class="hero-copy">
+          <h1 data-i18n="heroHeading">Your all-in-one business solution</h1>
+        </div>
+      </section>
+
+      <section class="login-panel" aria-labelledby="auth-title">
+        <div class="card">
+
+          <form class="login-form">
+            <label>
+              <span data-i18n="emailLabel">电子邮箱</span>
+              <input
+                type="email"
+                name="email"
+                placeholder="you@lavaslabs.com"
+                data-i18n-placeholder="emailPlaceholder"
+                required
+              />
+            </label>
+
+            <label>
+              <span data-i18n="passwordLabel">密码</span>
+              <div class="password-field">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="••••••••"
+                  data-i18n-placeholder="passwordPlaceholder"
+                  required
+                />
+                <button type="button" data-i18n="passwordToggle">显示</button>
+              </div>
+            </label>
+
+            <div class="form-meta">
+              <label class="checkbox">
+                <input type="checkbox" name="remember" />
+                <span data-i18n="remember">记住我</span>
+              </label>
+              <a href="#" data-i18n="forgot">忘记密码？</a>
+            </div>
+
+            <button type="submit" class="primary-btn" data-i18n="submit">
+              进入你的 Lavas 账户
+            </button>
+          </form>
+
+          <p class="divider-text" data-i18n="divider">或</p>
+
+          <div class="sso-buttons">
+            <button type="button" data-i18n="googleSso">Google 登录</button>
+            <button type="button" data-i18n="microsoftSso">Microsoft 登录</button>
+          </div>
+
+          <p class="card-footnote">
+            <span data-i18n="footnoteText">还没有账户？</span>
+            <a href="signup.html" data-i18n="footnoteLink">注册</a>
+          </p>
+        </div>
+      </section>
+    <script>
+      (function () {
+        const translations = {
+          zh: {
+            heroHeading: "一体化企业解决方案",
+            emailLabel: "电子邮箱",
+            emailPlaceholder: "you@lavaslabs.com",
+            passwordLabel: "密码",
+            passwordPlaceholder: "••••••••",
+            passwordToggle: "显示",
+            remember: "记住我",
+            forgot: "忘记密码？",
+            submit: "进入你的 Lavas 账户",
+            divider: "或",
+            googleSso: "使用 Google 登录",
+            microsoftSso: "使用 Microsoft 登录",
+            footnoteText: "还没有账户？",
+            footnoteLink: "注册",
+          },
+          en: {
+            heroHeading: "Your all-in-one business solution",
+            emailLabel: "Email address",
+            emailPlaceholder: "you@lavaslabs.com",
+            passwordLabel: "Password",
+            passwordPlaceholder: "••••••••",
+            passwordToggle: "Show",
+            remember: "Remember me",
+            forgot: "Forgot password?",
+            submit: "Access your Lavas account",
+            divider: "or",
+            googleSso: "Continue with Google",
+            microsoftSso: "Continue with Microsoft",
+            footnoteText: "No account yet?",
+            footnoteLink: "Sign up",
+          },
+          ja: {
+            heroHeading: "ビジネスを統合するソリューション",
+            emailLabel: "メールアドレス",
+            emailPlaceholder: "you@lavaslabs.com",
+            passwordLabel: "パスワード",
+            passwordPlaceholder: "••••••••",
+            passwordToggle: "表示",
+            remember: "ログイン状態を保存",
+            forgot: "パスワードをお忘れですか？",
+            submit: "Lavas アカウントにアクセス",
+            divider: "または",
+            googleSso: "Google で続行",
+            microsoftSso: "Microsoft で続行",
+            footnoteText: "アカウントがまだですか？",
+            footnoteLink: "登録する",
+          },
+          de: {
+            heroHeading: "Ihre All-in-One-Business-Lösung",
+            emailLabel: "E-Mail-Adresse",
+            emailPlaceholder: "you@lavaslabs.com",
+            passwordLabel: "Passwort",
+            passwordPlaceholder: "••••••••",
+            passwordToggle: "Anzeigen",
+            remember: "Angemeldet bleiben",
+            forgot: "Passwort vergessen?",
+            submit: "Dein Lavas-Konto öffnen",
+            divider: "oder",
+            googleSso: "Mit Google anmelden",
+            microsoftSso: "Mit Microsoft anmelden",
+            footnoteText: "Noch kein Konto?",
+            footnoteLink: "Registrieren",
+          },
+          vi: {
+            heroHeading: "Giải pháp kinh doanh tất cả trong một",
+            emailLabel: "Email",
+            emailPlaceholder: "you@lavaslabs.com",
+            passwordLabel: "Mật khẩu",
+            passwordPlaceholder: "••••••••",
+            passwordToggle: "Hiển thị",
+            remember: "Ghi nhớ tôi",
+            forgot: "Quên mật khẩu?",
+            submit: "Vào tài khoản Lavas của bạn",
+            divider: "hoặc",
+            googleSso: "Tiếp tục với Google",
+            microsoftSso: "Tiếp tục với Microsoft",
+            footnoteText: "Chưa có tài khoản?",
+            footnoteLink: "Đăng ký",
+          },
+        };
+
+        const textNodes = document.querySelectorAll("[data-i18n]");
+        const placeholderNodes = document.querySelectorAll(
+          "[data-i18n-placeholder]"
+        );
+        const langButtons = document.querySelectorAll(".lang-option");
+        const langToggle = document.getElementById("lang-toggle");
+
+        function applyLanguage(lang) {
+          const dict = translations[lang] || translations.zh;
+          document.documentElement.lang = lang;
+
+          textNodes.forEach((node) => {
+            const key = node.dataset.i18n;
+            if (dict[key]) {
+              node.textContent = dict[key];
+            }
+          });
+
+          placeholderNodes.forEach((input) => {
+            const key = input.dataset.i18nPlaceholder;
+            if (dict[key]) {
+              input.placeholder = dict[key];
+            }
+          });
+        }
+
+        langButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const lang = button.dataset.lang;
+            langButtons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+            applyLanguage(lang);
+            if (langToggle) {
+              langToggle.checked = false;
+            }
+          });
+        });
+
+        applyLanguage("zh");
+      })();
+    </script>
+  </body>
+</html>

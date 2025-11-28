@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lavas Labs - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="dashboard-layout">
+      <!-- Sidebar -->
+      <aside class="dashboard-sidebar">
+        <header class="brand sidebar-brand">
+          <p class="brand-label" aria-label="Lavas Labs">LAVAS LABS</p>
+        </header>
+        <nav class="sidebar-nav">
+          <a href="#overview" class="nav-item active" data-i18n="navOverview">
+            <span class="nav-icon">📊</span>
+            <span>概览</span>
+          </a>
+          <a href="wallet.html" class="nav-item" data-i18n="navWallet">
+            <span class="nav-icon">💼</span>
+            <span>钱包</span>
+          </a>
+          <a href="#employees" class="nav-item" data-i18n="navEmployees">
+            <span class="nav-icon">👥</span>
+            <span>员工管理</span>
+          </a>
+          <a href="#transactions" class="nav-item" data-i18n="navTransactions">
+            <span class="nav-icon">💳</span>
+            <span>交易记录</span>
+          </a>
+          <a href="#expenses" class="nav-item" data-i18n="navExpenses">
+            <span class="nav-icon">📈</span>
+            <span>费用分析</span>
+          </a>
+          <a href="#settings" class="nav-item" data-i18n="navSettings">
+            <span class="nav-icon">⚙️</span>
+            <span>设置</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="dashboard-main">
+        <!-- Top Bar -->
+        <header class="dashboard-header">
+          <div class="header-left">
+            <h1 class="page-title" data-i18n="pageTitle">仪表板</h1>
+          </div>
+          <div class="header-right">
+            <section class="language-fab" aria-label="Language selector">
+              <input type="checkbox" id="lang-toggle" />
+              <label for="lang-toggle" class="fab" title="Change language">🌐</label>
+              <div class="fab-menu" role="menu">
+                <button type="button" class="lang-option active" data-lang="zh">中文</button>
+                <button type="button" class="lang-option" data-lang="en">EN</button>
+                <button type="button" class="lang-option" data-lang="ja">日本語</button>
+                <button type="button" class="lang-option" data-lang="de">Deutsch</button>
+                <button type="button" class="lang-option" data-lang="vi">Tiếng Việt</button>
+              </div>
+            </section>
+            <div class="user-menu">
+              <button class="user-avatar" data-i18n="userMenu">用户</button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Overview Cards -->
+        <section class="dashboard-section">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label" data-i18n="statTotalBalance">总余额</span>
+                <span class="stat-icon">💰</span>
+              </div>
+              <div class="stat-value">
+                <span class="currency">USDT</span>
+                <span class="amount">1,234,567.89</span>
+              </div>
+              <div class="stat-change positive" data-i18n="statChange">+12.5% 本月</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label" data-i18n="statAvailable">可用余额</span>
+                <span class="stat-icon">💵</span>
+              </div>
+              <div class="stat-value">
+                <span class="currency">USDT</span>
+                <span class="amount">987,654.32</span>
+              </div>
+              <div class="stat-change" data-i18n="statReady">可用于分配</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label" data-i18n="statEmployees">员工总数</span>
+                <span class="stat-icon">👥</span>
+              </div>
+              <div class="stat-value">
+                <span class="amount">42</span>
+              </div>
+              <div class="stat-change" data-i18n="statActive">38 活跃</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-header">
+                <span class="stat-label" data-i18n="statMonthlyExpense">本月支出</span>
+                <span class="stat-icon">📊</span>
+              </div>
+              <div class="stat-value">
+                <span class="currency">USDT</span>
+                <span class="amount">245,890.12</span>
+              </div>
+              <div class="stat-change negative" data-i18n="statVsLastMonth">-8.2% 较上月</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="dashboard-section">
+          <h2 class="section-title" data-i18n="quickActions">快速操作</h2>
+          <div class="actions-grid">
+            <button class="action-card" data-i18n="actionDeposit">
+              <span class="action-icon">💳</span>
+              <span class="action-label">法币充值</span>
+              <span class="action-desc" data-i18n="actionDepositDesc">通过 Ramp 充值法币并自动转换为 USDT</span>
+            </button>
+            <button class="action-card" data-i18n="actionAllocate">
+              <span class="action-icon">🎯</span>
+              <span class="action-label">分配额度</span>
+              <span class="action-desc" data-i18n="actionAllocateDesc">为员工分配 USDT 使用额度</span>
+            </button>
+            <button class="action-card" data-i18n="actionOSL">
+              <span class="action-icon">🔗</span>
+              <span class="action-label">OSL 集成</span>
+              <span class="action-desc" data-i18n="actionOSLDesc">管理 OSL 交易所连接与配置</span>
+            </button>
+            <button class="action-card" data-i18n="actionReports">
+              <span class="action-icon">📄</span>
+              <span class="action-label">生成报告</span>
+              <span class="action-desc" data-i18n="actionReportsDesc">导出费用与交易报告</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Recent Transactions -->
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2 class="section-title" data-i18n="recentTransactions">最近交易</h2>
+            <a href="#transactions" class="view-all" data-i18n="viewAll">查看全部</a>
+          </div>
+          <div class="transactions-table">
+            <table>
+              <thead>
+                <tr>
+                  <th data-i18n="txDate">日期</th>
+                  <th data-i18n="txType">类型</th>
+                  <th data-i18n="txEmployee">员工</th>
+                  <th data-i18n="txAmount">金额</th>
+                  <th data-i18n="txStatus">状态</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2024-01-15</td>
+                  <td><span class="tx-badge deposit" data-i18n="txDeposit">充值</span></td>
+                  <td>—</td>
+                  <td class="amount-positive">+50,000 USDT</td>
+                  <td><span class="status-badge success" data-i18n="txCompleted">已完成</span></td>
+                </tr>
+                <tr>
+                  <td>2024-01-14</td>
+                  <td><span class="tx-badge allocate" data-i18n="txAllocate">分配</span></td>
+                  <td>张三</td>
+                  <td class="amount-negative">-5,000 USDT</td>
+                  <td><span class="status-badge success" data-i18n="txCompleted">已完成</span></td>
+                </tr>
+                <tr>
+                  <td>2024-01-14</td>
+                  <td><span class="tx-badge expense" data-i18n="txExpense">支出</span></td>
+                  <td>李四</td>
+                  <td class="amount-negative">-2,340 USDT</td>
+                  <td><span class="status-badge success" data-i18n="txCompleted">已完成</span></td>
+                </tr>
+                <tr>
+                  <td>2024-01-13</td>
+                  <td><span class="tx-badge allocate" data-i18n="txAllocate">分配</span></td>
+                  <td>王五</td>
+                  <td class="amount-negative">-10,000 USDT</td>
+                  <td><span class="status-badge pending" data-i18n="txPending">处理中</span></td>
+                </tr>
+                <tr>
+                  <td>2024-01-12</td>
+                  <td><span class="tx-badge deposit" data-i18n="txDeposit">充值</span></td>
+                  <td>—</td>
+                  <td class="amount-positive">+100,000 USDT</td>
+                  <td><span class="status-badge success" data-i18n="txCompleted">已完成</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Employee Overview -->
+        <section class="dashboard-section">
+          <div class="section-header">
+            <h2 class="section-title" data-i18n="topEmployees">活跃员工</h2>
+            <a href="#employees" class="view-all" data-i18n="viewAll">查看全部</a>
+          </div>
+          <div class="employees-grid">
+            <div class="employee-card">
+              <div class="employee-avatar">张</div>
+              <div class="employee-info">
+                <div class="employee-name">张三</div>
+                <div class="employee-role" data-i18n="roleDeveloper">开发工程师</div>
+              </div>
+              <div class="employee-stats">
+                <div class="employee-balance">
+                  <span class="balance-label" data-i18n="balance">余额</span>
+                  <span class="balance-amount">8,500 USDT</span>
+                </div>
+                <div class="employee-usage">
+                  <span class="usage-label" data-i18n="usage">本月使用</span>
+                  <span class="usage-amount">1,500 USDT</span>
+                </div>
+              </div>
+            </div>
+            <div class="employee-card">
+              <div class="employee-avatar">李</div>
+              <div class="employee-info">
+                <div class="employee-name">李四</div>
+                <div class="employee-role" data-i18n="roleManager">项目经理</div>
+              </div>
+              <div class="employee-stats">
+                <div class="employee-balance">
+                  <span class="balance-label" data-i18n="balance">余额</span>
+                  <span class="balance-amount">12,000 USDT</span>
+                </div>
+                <div class="employee-usage">
+                  <span class="usage-label" data-i18n="usage">本月使用</span>
+                  <span class="usage-amount">2,340 USDT</span>
+                </div>
+              </div>
+            </div>
+            <div class="employee-card">
+              <div class="employee-avatar">王</div>
+              <div class="employee-info">
+                <div class="employee-name">王五</div>
+                <div class="employee-role" data-i18n="roleDesigner">产品设计师</div>
+              </div>
+              <div class="employee-stats">
+                <div class="employee-balance">
+                  <span class="balance-label" data-i18n="balance">余额</span>
+                  <span class="balance-amount">5,200 USDT</span>
+                </div>
+                <div class="employee-usage">
+                  <span class="usage-label" data-i18n="usage">本月使用</span>
+                  <span class="usage-amount">800 USDT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      (function () {
+        const translations = {
+          zh: {
+            navOverview: "概览",
+            navWallet: "钱包",
+            navEmployees: "员工管理",
+            navTransactions: "交易记录",
+            navExpenses: "费用分析",
+            navSettings: "设置",
+            pageTitle: "仪表板",
+            userMenu: "用户",
+            statTotalBalance: "总余额",
+            statChange: "+12.5% 本月",
+            statAvailable: "可用余额",
+            statReady: "可用于分配",
+            statEmployees: "员工总数",
+            statActive: "38 活跃",
+            statMonthlyExpense: "本月支出",
+            statVsLastMonth: "-8.2% 较上月",
+            quickActions: "快速操作",
+            actionDeposit: "法币充值",
+            actionDepositDesc: "通过 Ramp 充值法币并自动转换为 USDT",
+            actionAllocate: "分配额度",
+            actionAllocateDesc: "为员工分配 USDT 使用额度",
+            actionOSL: "OSL 集成",
+            actionOSLDesc: "管理 OSL 交易所连接与配置",
+            actionReports: "生成报告",
+            actionReportsDesc: "导出费用与交易报告",
+            recentTransactions: "最近交易",
+            viewAll: "查看全部",
+            txDate: "日期",
+            txType: "类型",
+            txEmployee: "员工",
+            txAmount: "金额",
+            txStatus: "状态",
+            txDeposit: "充值",
+            txAllocate: "分配",
+            txExpense: "支出",
+            txCompleted: "已完成",
+            txPending: "处理中",
+            topEmployees: "活跃员工",
+            roleDeveloper: "开发工程师",
+            roleManager: "项目经理",
+            roleDesigner: "产品设计师",
+            balance: "余额",
+            usage: "本月使用",
+          },
+          en: {
+            navOverview: "Overview",
+            navWallet: "Wallet",
+            navEmployees: "Employees",
+            navTransactions: "Transactions",
+            navExpenses: "Expenses",
+            navSettings: "Settings",
+            pageTitle: "Dashboard",
+            userMenu: "User",
+            statTotalBalance: "Total Balance",
+            statChange: "+12.5% this month",
+            statAvailable: "Available",
+            statReady: "Ready to allocate",
+            statEmployees: "Total Employees",
+            statActive: "38 active",
+            statMonthlyExpense: "Monthly Expense",
+            statVsLastMonth: "-8.2% vs last month",
+            quickActions: "Quick Actions",
+            actionDeposit: "Deposit Fiat",
+            actionDepositDesc: "Deposit fiat via Ramp and auto-convert to USDT",
+            actionAllocate: "Allocate Budget",
+            actionAllocateDesc: "Allocate USDT budget to employees",
+            actionOSL: "OSL Integration",
+            actionOSLDesc: "Manage OSL exchange connection & config",
+            actionReports: "Generate Reports",
+            actionReportsDesc: "Export expense & transaction reports",
+            recentTransactions: "Recent Transactions",
+            viewAll: "View All",
+            txDate: "Date",
+            txType: "Type",
+            txEmployee: "Employee",
+            txAmount: "Amount",
+            txStatus: "Status",
+            txDeposit: "Deposit",
+            txAllocate: "Allocate",
+            txExpense: "Expense",
+            txCompleted: "Completed",
+            txPending: "Pending",
+            topEmployees: "Active Employees",
+            roleDeveloper: "Developer",
+            roleManager: "Project Manager",
+            roleDesigner: "Product Designer",
+            balance: "Balance",
+            usage: "This Month",
+          },
+          ja: {
+            navOverview: "概要",
+            navWallet: "ウォレット",
+            navEmployees: "従業員",
+            navTransactions: "取引",
+            navExpenses: "経費",
+            navSettings: "設定",
+            pageTitle: "ダッシュボード",
+            userMenu: "ユーザー",
+            statTotalBalance: "総残高",
+            statChange: "+12.5% 今月",
+            statAvailable: "利用可能",
+            statReady: "割り当て可能",
+            statEmployees: "従業員総数",
+            statActive: "38 アクティブ",
+            statMonthlyExpense: "月間経費",
+            statVsLastMonth: "-8.2% 先月比",
+            quickActions: "クイックアクション",
+            actionDeposit: "法定通貨入金",
+            actionDepositDesc: "Ramp経由で法定通貨を入金し、USDTに自動変換",
+            actionAllocate: "予算割り当て",
+            actionAllocateDesc: "従業員にUSDT予算を割り当て",
+            actionOSL: "OSL統合",
+            actionOSLDesc: "OSL取引所接続と設定を管理",
+            actionReports: "レポート生成",
+            actionReportsDesc: "経費と取引レポートをエクスポート",
+            recentTransactions: "最近の取引",
+            viewAll: "すべて表示",
+            txDate: "日付",
+            txType: "種類",
+            txEmployee: "従業員",
+            txAmount: "金額",
+            txStatus: "ステータス",
+            txDeposit: "入金",
+            txAllocate: "割り当て",
+            txExpense: "支出",
+            txCompleted: "完了",
+            txPending: "処理中",
+            topEmployees: "アクティブな従業員",
+            roleDeveloper: "開発者",
+            roleManager: "プロジェクトマネージャー",
+            roleDesigner: "プロダクトデザイナー",
+            balance: "残高",
+            usage: "今月の使用",
+          },
+          de: {
+            navOverview: "Übersicht",
+            navWallet: "Wallet",
+            navEmployees: "Mitarbeiter",
+            navTransactions: "Transaktionen",
+            navExpenses: "Ausgaben",
+            navSettings: "Einstellungen",
+            pageTitle: "Dashboard",
+            userMenu: "Benutzer",
+            statTotalBalance: "Gesamtsaldo",
+            statChange: "+12.5% diesen Monat",
+            statAvailable: "Verfügbar",
+            statReady: "Bereit zur Zuteilung",
+            statEmployees: "Mitarbeiter gesamt",
+            statActive: "38 aktiv",
+            statMonthlyExpense: "Monatliche Ausgaben",
+            statVsLastMonth: "-8.2% vs. letzten Monat",
+            quickActions: "Schnellaktionen",
+            actionDeposit: "Fiat einzahlen",
+            actionDepositDesc: "Fiat über Ramp einzahlen und automatisch in USDT umwandeln",
+            actionAllocate: "Budget zuweisen",
+            actionAllocateDesc: "USDT-Budget an Mitarbeiter zuweisen",
+            actionOSL: "OSL-Integration",
+            actionOSLDesc: "OSL-Börsenverbindung & Konfiguration verwalten",
+            actionReports: "Berichte erstellen",
+            actionReportsDesc: "Ausgaben- & Transaktionsberichte exportieren",
+            recentTransactions: "Letzte Transaktionen",
+            viewAll: "Alle anzeigen",
+            txDate: "Datum",
+            txType: "Typ",
+            txEmployee: "Mitarbeiter",
+            txAmount: "Betrag",
+            txStatus: "Status",
+            txDeposit: "Einzahlung",
+            txAllocate: "Zuteilung",
+            txExpense: "Ausgabe",
+            txCompleted: "Abgeschlossen",
+            txPending: "Ausstehend",
+            topEmployees: "Aktive Mitarbeiter",
+            roleDeveloper: "Entwickler",
+            roleManager: "Projektmanager",
+            roleDesigner: "Produktdesigner",
+            balance: "Saldo",
+            usage: "Diesen Monat",
+          },
+          vi: {
+            navOverview: "Tổng quan",
+            navWallet: "Ví",
+            navEmployees: "Nhân viên",
+            navTransactions: "Giao dịch",
+            navExpenses: "Chi phí",
+            navSettings: "Cài đặt",
+            pageTitle: "Bảng điều khiển",
+            userMenu: "Người dùng",
+            statTotalBalance: "Tổng số dư",
+            statChange: "+12.5% tháng này",
+            statAvailable: "Khả dụng",
+            statReady: "Sẵn sàng phân bổ",
+            statEmployees: "Tổng nhân viên",
+            statActive: "38 đang hoạt động",
+            statMonthlyExpense: "Chi phí tháng",
+            statVsLastMonth: "-8.2% so với tháng trước",
+            quickActions: "Thao tác nhanh",
+            actionDeposit: "Nạp tiền pháp định",
+            actionDepositDesc: "Nạp tiền pháp định qua Ramp và tự động chuyển đổi sang USDT",
+            actionAllocate: "Phân bổ ngân sách",
+            actionAllocateDesc: "Phân bổ ngân sách USDT cho nhân viên",
+            actionOSL: "Tích hợp OSL",
+            actionOSLDesc: "Quản lý kết nối & cấu hình sàn giao dịch OSL",
+            actionReports: "Tạo báo cáo",
+            actionReportsDesc: "Xuất báo cáo chi phí & giao dịch",
+            recentTransactions: "Giao dịch gần đây",
+            viewAll: "Xem tất cả",
+            txDate: "Ngày",
+            txType: "Loại",
+            txEmployee: "Nhân viên",
+            txAmount: "Số tiền",
+            txStatus: "Trạng thái",
+            txDeposit: "Nạp tiền",
+            txAllocate: "Phân bổ",
+            txExpense: "Chi tiêu",
+            txCompleted: "Hoàn thành",
+            txPending: "Đang xử lý",
+            topEmployees: "Nhân viên tích cực",
+            roleDeveloper: "Nhà phát triển",
+            roleManager: "Quản lý dự án",
+            roleDesigner: "Thiết kế sản phẩm",
+            balance: "Số dư",
+            usage: "Tháng này",
+          },
+        };
+
+        const textNodes = document.querySelectorAll("[data-i18n]");
+        const langButtons = document.querySelectorAll(".lang-option");
+        const langToggle = document.getElementById("lang-toggle");
+
+        function applyLanguage(lang) {
+          const dict = translations[lang] || translations.zh;
+          document.documentElement.lang = lang;
+
+          textNodes.forEach((node) => {
+            const key = node.dataset.i18n;
+            if (dict[key]) {
+              if (node.tagName === "INPUT" || node.tagName === "TEXTAREA") {
+                node.placeholder = dict[key];
+              } else {
+                node.textContent = dict[key];
+              }
+            }
+          });
+        }
+
+        langButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const lang = button.dataset.lang;
+            langButtons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+            applyLanguage(lang);
+            if (langToggle) {
+              langToggle.checked = false;
+            }
+          });
+        });
+
+        // Navigation active state
+        const navItems = document.querySelectorAll(".nav-item");
+        navItems.forEach((item) => {
+          item.addEventListener("click", (e) => {
+            e.preventDefault();
+            navItems.forEach((nav) => nav.classList.remove("active"));
+            item.classList.add("active");
+          });
+        });
+
+        applyLanguage("zh");
+      })();
+    </script>
+  </body>
+</html>
+

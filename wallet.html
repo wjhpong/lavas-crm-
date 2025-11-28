@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lavas Labs - 钱包</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="dashboard-layout">
+      <!-- Sidebar -->
+      <aside class="dashboard-sidebar">
+        <header class="brand sidebar-brand">
+          <p class="brand-label" aria-label="Lavas Labs">LAVAS LABS</p>
+        </header>
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="nav-item" data-i18n="navOverview">
+            <span class="nav-icon">📊</span>
+            <span>概览</span>
+          </a>
+          <a href="wallet.html" class="nav-item active" data-i18n="navWallet">
+            <span class="nav-icon">💼</span>
+            <span>钱包</span>
+          </a>
+          <a href="#employees" class="nav-item" data-i18n="navEmployees">
+            <span class="nav-icon">👥</span>
+            <span>员工管理</span>
+          </a>
+          <a href="#transactions" class="nav-item" data-i18n="navTransactions">
+            <span class="nav-icon">💳</span>
+            <span>交易记录</span>
+          </a>
+          <a href="#expenses" class="nav-item" data-i18n="navExpenses">
+            <span class="nav-icon">📈</span>
+            <span>费用分析</span>
+          </a>
+          <a href="#settings" class="nav-item" data-i18n="navSettings">
+            <span class="nav-icon">⚙️</span>
+            <span>设置</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="dashboard-main">
+        <!-- Top Bar -->
+        <header class="dashboard-header">
+          <div class="header-left">
+            <h1 class="page-title" data-i18n="pageTitle">钱包</h1>
+          </div>
+          <div class="header-right">
+            <section class="language-fab" aria-label="Language selector">
+              <input type="checkbox" id="lang-toggle" />
+              <label for="lang-toggle" class="fab" title="Change language">🌐</label>
+              <div class="fab-menu" role="menu">
+                <button type="button" class="lang-option active" data-lang="zh">中文</button>
+                <button type="button" class="lang-option" data-lang="en">EN</button>
+                <button type="button" class="lang-option" data-lang="ja">日本語</button>
+                <button type="button" class="lang-option" data-lang="de">Deutsch</button>
+                <button type="button" class="lang-option" data-lang="vi">Tiếng Việt</button>
+              </div>
+            </section>
+            <div class="user-menu">
+              <button class="user-avatar" data-i18n="userMenu">用户</button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Total Assets Section -->
+        <section class="wallet-section">
+          <div class="total-assets-header">
+            <div class="total-assets-title">
+              <h2 data-i18n="totalAssets">总资产</h2>
+              <button class="eye-toggle" title="Toggle visibility">👁️</button>
+            </div>
+            <div class="total-assets-value">
+              <div class="currency-selector">
+                <span class="currency-display" data-i18n="currency">USDT</span>
+                <select class="currency-dropdown">
+                  <option value="USDT">USDT</option>
+                  <option value="HKD">HKD</option>
+                  <option value="USD">USD</option>
+                  <option value="CNY">CNY</option>
+                </select>
+              </div>
+              <div class="total-amount">1,234,567.89</div>
+            </div>
+          </div>
+          <div class="wallet-actions">
+            <button class="wallet-action-btn primary" data-i18n="actionDeposit">
+              <span class="action-icon">⬇️</span>
+              <span>充值</span>
+            </button>
+            <button class="wallet-action-btn" data-i18n="actionWithdraw">
+              <span class="action-icon">⬆️</span>
+              <span>提现</span>
+            </button>
+            <button class="wallet-action-btn" data-i18n="actionTransfer">
+              <span class="action-icon">↔️</span>
+              <span>转账</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Asset Summary Cards -->
+        <section class="wallet-section">
+          <div class="asset-summary-grid">
+            <div class="asset-summary-card">
+              <div class="summary-icon">💰</div>
+              <div class="summary-info">
+                <div class="summary-label" data-i18n="summaryFunding">资金</div>
+                <div class="summary-value">80.94</div>
+              </div>
+            </div>
+            <div class="asset-summary-card">
+              <div class="summary-icon">⚡</div>
+              <div class="summary-info">
+                <div class="summary-label" data-i18n="summaryExchange">兑换</div>
+                <div class="summary-value">1,085.11</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Assets Table -->
+        <section class="wallet-section">
+          <div class="assets-table-header">
+            <h3 class="assets-title" data-i18n="assets">资产</h3>
+            <div class="assets-controls">
+              <div class="asset-filters">
+                <button class="filter-tab active" data-filter="all" data-i18n="filterAll">全部</button>
+                <button class="filter-tab" data-filter="fiat" data-i18n="filterFiat">法币</button>
+                <button class="filter-tab" data-filter="digital" data-i18n="filterDigital">数字货币</button>
+                <button class="filter-tab" data-filter="wealth" data-i18n="filterWealth">财富</button>
+              </div>
+              <div class="assets-options">
+                <label class="checkbox-option">
+                  <input type="checkbox" id="hide-zero" />
+                  <span data-i18n="hideZero">隐藏零余额</span>
+                </label>
+                <button class="download-btn" data-i18n="downloadCSV">下载 CSV</button>
+              </div>
+            </div>
+          </div>
+          <div class="wallet-table-container">
+            <table class="wallet-table">
+              <thead>
+                <tr>
+                  <th data-i18n="colAsset">资产</th>
+                  <th data-i18n="colType">类型</th>
+                  <th data-i18n="colAmount">数量</th>
+                  <th data-i18n="colPrice">价格 (USDT)</th>
+                  <th data-i18n="colValue">价值 (USDT)</th>
+                  <th data-i18n="colAction">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-type="fiat">
+                  <td>
+                    <div class="asset-cell">
+                      <span class="asset-icon">🇭🇰</span>
+                      <span class="asset-name">HKD</span>
+                    </div>
+                  </td>
+                  <td><span class="type-badge fiat" data-i18n="typeFiat">法币</span></td>
+                  <td>1,000.00</td>
+                  <td>0.99</td>
+                  <td>999.99</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="action-link" data-i18n="actionDeposit">充值</button>
+                      <button class="action-link" data-i18n="actionWithdraw">提现</button>
+                      <button class="action-link" data-i18n="actionTransfer">转账</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-type="fiat">
+                  <td>
+                    <div class="asset-cell">
+                      <span class="asset-icon">🇺🇸</span>
+                      <span class="asset-name">USD</span>
+                    </div>
+                  </td>
+                  <td><span class="type-badge fiat" data-i18n="typeFiat">法币</span></td>
+                  <td>10.40</td>
+                  <td>7.78</td>
+                  <td>80.94</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="action-link" data-i18n="actionDeposit">充值</button>
+                      <button class="action-link" data-i18n="actionWithdraw">提现</button>
+                      <button class="action-link" data-i18n="actionTransfer">转账</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-type="digital">
+                  <td>
+                    <div class="asset-cell">
+                      <span class="asset-icon crypto usdt-icon">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="16" cy="16" r="16" fill="#26a17b"/>
+                          <path d="M16 7c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" fill="#fff"/>
+                          <path d="M14.5 12.5h3v7h-3v-7zm-1.5 0h-1.5v7h1.5v-7zm6 0h1.5v7H19v-7z" fill="#26a17b"/>
+                        </svg>
+                      </span>
+                      <span class="asset-name">USDT</span>
+                    </div>
+                  </td>
+                  <td><span class="type-badge digital" data-i18n="typeDigital">数字货币</span></td>
+                  <td>10.947008</td>
+                  <td>7.77</td>
+                  <td>85.11</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="action-link" data-i18n="actionDeposit">充值</button>
+                      <button class="action-link" data-i18n="actionWithdraw">提现</button>
+                      <button class="action-link" data-i18n="actionTransfer">转账</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-type="digital">
+                  <td>
+                    <div class="asset-cell">
+                      <span class="asset-icon crypto usdt-icon">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="16" cy="16" r="16" fill="#26a17b"/>
+                          <path d="M16 7c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" fill="#fff"/>
+                          <path d="M14.5 12.5h3v7h-3v-7zm-1.5 0h-1.5v7h1.5v-7zm6 0h1.5v7H19v-7z" fill="#26a17b"/>
+                        </svg>
+                      </span>
+                      <span class="asset-name">USDT (TRC20)</span>
+                    </div>
+                  </td>
+                  <td><span class="type-badge digital" data-i18n="typeDigital">数字货币</span></td>
+                  <td>0.130420</td>
+                  <td>7.77</td>
+                  <td>1.01</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="action-link" data-i18n="actionDeposit">充值</button>
+                      <button class="action-link" data-i18n="actionWithdraw">提现</button>
+                      <button class="action-link" data-i18n="actionTransfer">转账</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-type="digital">
+                  <td>
+                    <div class="asset-cell">
+                      <span class="asset-icon crypto usdc-icon">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="16" cy="16" r="16" fill="#2775ca"/>
+                          <circle cx="16" cy="16" r="11" fill="none" stroke="#fff" stroke-width="1.5"/>
+                          <circle cx="16" cy="16" r="7" fill="none" stroke="#fff" stroke-width="1.5"/>
+                          <circle cx="16" cy="16" r="3" fill="#2775ca"/>
+                        </svg>
+                      </span>
+                      <span class="asset-name">USDC</span>
+                    </div>
+                  </td>
+                  <td><span class="type-badge digital" data-i18n="typeDigital">数字货币</span></td>
+                  <td>5.234567</td>
+                  <td>7.77</td>
+                  <td>40.67</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="action-link" data-i18n="actionDeposit">充值</button>
+                      <button class="action-link" data-i18n="actionWithdraw">提现</button>
+                      <button class="action-link" data-i18n="actionTransfer">转账</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-type="digital">
+                  <td>
+                    <div class="asset-cell">
+                      <span class="asset-icon crypto usdc-icon">
+                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="16" cy="16" r="16" fill="#2775ca"/>
+                          <circle cx="16" cy="16" r="11" fill="none" stroke="#fff" stroke-width="1.5"/>
+                          <circle cx="16" cy="16" r="7" fill="none" stroke="#fff" stroke-width="1.5"/>
+                          <circle cx="16" cy="16" r="3" fill="#2775ca"/>
+                        </svg>
+                      </span>
+                      <span class="asset-name">USDC (TRC20)</span>
+                    </div>
+                  </td>
+                  <td><span class="type-badge digital" data-i18n="typeDigital">数字货币</span></td>
+                  <td>2.123456</td>
+                  <td>7.77</td>
+                  <td>16.50</td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="action-link" data-i18n="actionDeposit">充值</button>
+                      <button class="action-link" data-i18n="actionWithdraw">提现</button>
+                      <button class="action-link" data-i18n="actionTransfer">转账</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      (function () {
+        const translations = {
+          zh: {
+            navOverview: "概览",
+            navWallet: "钱包",
+            navEmployees: "员工管理",
+            navTransactions: "交易记录",
+            navExpenses: "费用分析",
+            navSettings: "设置",
+            pageTitle: "钱包",
+            userMenu: "用户",
+            totalAssets: "总资产",
+            currency: "USDT",
+            actionDeposit: "充值",
+            actionWithdraw: "提现",
+            actionTransfer: "转账",
+            summaryFunding: "资金",
+            summaryExchange: "兑换",
+            assets: "资产",
+            filterAll: "全部",
+            filterFiat: "法币",
+            filterDigital: "数字货币",
+            filterWealth: "财富",
+            hideZero: "隐藏零余额",
+            downloadCSV: "下载 CSV",
+            colAsset: "资产",
+            colType: "类型",
+            colAmount: "数量",
+            colPrice: "价格 (USDT)",
+            colValue: "价值 (USDT)",
+            colAction: "操作",
+            typeFiat: "法币",
+            typeDigital: "数字货币",
+            actionFX: "FX",
+          },
+          en: {
+            navOverview: "Overview",
+            navWallet: "Wallet",
+            navEmployees: "Employees",
+            navTransactions: "Transactions",
+            navExpenses: "Expenses",
+            navSettings: "Settings",
+            pageTitle: "Wallet",
+            userMenu: "User",
+            totalAssets: "Total Assets",
+            currency: "USDT",
+            actionDeposit: "Deposit",
+            actionWithdraw: "Withdraw",
+            actionTransfer: "Transfer",
+            summaryFunding: "Funding",
+            summaryExchange: "Exchange",
+            assets: "Assets",
+            filterAll: "ALL",
+            filterFiat: "Fiat",
+            filterDigital: "Digital",
+            filterWealth: "Wealth",
+            hideZero: "Hide 0 balances",
+            downloadCSV: "Download CSV",
+            colAsset: "Assets",
+            colType: "Type",
+            colAmount: "Amount",
+            colPrice: "Price (USDT)",
+            colValue: "Value (USDT)",
+            colAction: "Action",
+            typeFiat: "Fiat",
+            typeDigital: "Digital",
+            actionFX: "FX",
+          },
+          ja: {
+            navOverview: "概要",
+            navWallet: "ウォレット",
+            navEmployees: "従業員",
+            navTransactions: "取引",
+            navExpenses: "経費",
+            navSettings: "設定",
+            pageTitle: "ウォレット",
+            userMenu: "ユーザー",
+            totalAssets: "総資産",
+            currency: "USDT",
+            actionDeposit: "入金",
+            actionWithdraw: "出金",
+            actionTransfer: "送金",
+            summaryFunding: "資金",
+            summaryExchange: "交換",
+            assets: "資産",
+            filterAll: "すべて",
+            filterFiat: "法定通貨",
+            filterDigital: "デジタル",
+            filterWealth: "資産",
+            hideZero: "残高0を非表示",
+            downloadCSV: "CSVダウンロード",
+            colAsset: "資産",
+            colType: "種類",
+            colAmount: "数量",
+            colPrice: "価格 (USDT)",
+            colValue: "価値 (USDT)",
+            colAction: "操作",
+            typeFiat: "法定通貨",
+            typeDigital: "デジタル",
+            actionFX: "FX",
+          },
+          de: {
+            navOverview: "Übersicht",
+            navWallet: "Wallet",
+            navEmployees: "Mitarbeiter",
+            navTransactions: "Transaktionen",
+            navExpenses: "Ausgaben",
+            navSettings: "Einstellungen",
+            pageTitle: "Wallet",
+            userMenu: "Benutzer",
+            totalAssets: "Gesamtvermögen",
+            currency: "USDT",
+            actionDeposit: "Einzahlen",
+            actionWithdraw: "Abheben",
+            actionTransfer: "Überweisen",
+            summaryFunding: "Finanzierung",
+            summaryExchange: "Tausch",
+            assets: "Vermögenswerte",
+            filterAll: "Alle",
+            filterFiat: "Fiat",
+            filterDigital: "Digital",
+            filterWealth: "Vermögen",
+            hideZero: "0 Salden ausblenden",
+            downloadCSV: "CSV herunterladen",
+            colAsset: "Vermögenswert",
+            colType: "Typ",
+            colAmount: "Betrag",
+            colPrice: "Preis (USDT)",
+            colValue: "Wert (USDT)",
+            colAction: "Aktion",
+            typeFiat: "Fiat",
+            typeDigital: "Digital",
+            actionFX: "FX",
+          },
+          vi: {
+            navOverview: "Tổng quan",
+            navWallet: "Ví",
+            navEmployees: "Nhân viên",
+            navTransactions: "Giao dịch",
+            navExpenses: "Chi phí",
+            navSettings: "Cài đặt",
+            pageTitle: "Ví",
+            userMenu: "Người dùng",
+            totalAssets: "Tổng tài sản",
+            currency: "USDT",
+            actionDeposit: "Nạp tiền",
+            actionWithdraw: "Rút tiền",
+            actionTransfer: "Chuyển khoản",
+            summaryFunding: "Vốn",
+            summaryExchange: "Đổi",
+            assets: "Tài sản",
+            filterAll: "Tất cả",
+            filterFiat: "Pháp định",
+            filterDigital: "Kỹ thuật số",
+            filterWealth: "Tài sản",
+            hideZero: "Ẩn số dư 0",
+            downloadCSV: "Tải CSV",
+            colAsset: "Tài sản",
+            colType: "Loại",
+            colAmount: "Số lượng",
+            colPrice: "Giá (USDT)",
+            colValue: "Giá trị (USDT)",
+            colAction: "Thao tác",
+            typeFiat: "Pháp định",
+            typeDigital: "Kỹ thuật số",
+            actionFX: "FX",
+          },
+        };
+
+        const textNodes = document.querySelectorAll("[data-i18n]");
+        const langButtons = document.querySelectorAll(".lang-option");
+        const langToggle = document.getElementById("lang-toggle");
+
+        function applyLanguage(lang) {
+          const dict = translations[lang] || translations.zh;
+          document.documentElement.lang = lang;
+
+          textNodes.forEach((node) => {
+            const key = node.dataset.i18n;
+            if (dict[key]) {
+              if (node.tagName === "INPUT" || node.tagName === "TEXTAREA") {
+                node.placeholder = dict[key];
+              } else {
+                node.textContent = dict[key];
+              }
+            }
+          });
+        }
+
+        langButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const lang = button.dataset.lang;
+            langButtons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+            applyLanguage(lang);
+            if (langToggle) {
+              langToggle.checked = false;
+            }
+          });
+        });
+
+        // Filter tabs
+        const filterTabs = document.querySelectorAll(".filter-tab");
+        filterTabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            filterTabs.forEach((t) => t.classList.remove("active"));
+            tab.classList.add("active");
+            const filter = tab.dataset.filter;
+            const rows = document.querySelectorAll(".wallet-table tbody tr");
+            rows.forEach((row) => {
+              if (filter === "all") {
+                row.style.display = "";
+              } else {
+                row.style.display = row.dataset.type === filter ? "" : "none";
+              }
+            });
+          });
+        });
+
+        // Hide zero balances
+        const hideZeroCheckbox = document.getElementById("hide-zero");
+        hideZeroCheckbox.addEventListener("change", () => {
+          const rows = document.querySelectorAll(".wallet-table tbody tr");
+          rows.forEach((row) => {
+            if (hideZeroCheckbox.checked && row.dataset.zero === "true") {
+              row.style.display = "none";
+            } else {
+              const activeFilter = document.querySelector(".filter-tab.active").dataset.filter;
+              if (activeFilter === "all" || row.dataset.type === activeFilter) {
+                row.style.display = "";
+              }
+            }
+          });
+        });
+
+        applyLanguage("zh");
+      })();
+    </script>
+  </body>
+</html>
+

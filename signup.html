@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lavas Labs - 注册</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      body {
+        background: #000000;
+        color: #ffffff;
+      }
+      
+      .page {
+        background: #000000;
+      }
+      
+      .hero {
+        background: #0a0a0a;
+        border: 1px solid rgba(255, 30, 86, 0.2);
+      }
+      
+      .brand-label {
+        color: #ff1e56;
+      }
+      
+      .hero-copy h1 {
+        color: #ffffff;
+      }
+      
+      .hero-login-link {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      
+      .hero-login-link a {
+        color: #ff1e56;
+      }
+      
+      .card {
+        background: #0a0a0a;
+        border: 1px solid rgba(255, 30, 86, 0.2);
+      }
+      
+      .login-form label {
+        color: #ffffff;
+      }
+      
+      input,
+      select,
+      textarea {
+        background: #1a1a1a;
+        border: 1px solid rgba(255, 30, 86, 0.3);
+        color: #ffffff;
+      }
+      
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #ff1e56;
+        box-shadow: 0 0 0 3px rgba(255, 30, 86, 0.2);
+      }
+      
+      .password-field {
+        background: #1a1a1a;
+        border: 1px solid rgba(255, 30, 86, 0.3);
+      }
+      
+      .password-field input {
+        background: transparent;
+        color: #ffffff;
+      }
+      
+      .password-toggle {
+        color: #ff1e56;
+      }
+      
+      .phone-code {
+        background: #1a1a1a;
+        border: 1px solid rgba(255, 30, 86, 0.3);
+        color: #ffffff;
+      }
+      
+      .language-fab .fab {
+        background: #1a1a1a;
+        border: 1px solid rgba(255, 30, 86, 0.3);
+        color: #ffffff;
+      }
+      
+      .language-fab .fab-menu {
+        background: #0a0a0a;
+        border: 1px solid rgba(255, 30, 86, 0.3);
+      }
+      
+      .lang-option {
+        color: rgba(255, 255, 255, 0.8);
+      }
+      
+      .lang-option:hover {
+        background: rgba(255, 30, 86, 0.1);
+        color: #ffffff;
+      }
+      
+      .lang-option.active {
+        background: #ff1e56;
+        color: #ffffff;
+      }
+      
+      .checkbox {
+        color: rgba(255, 255, 255, 0.8);
+      }
+      
+      .form-meta a {
+        color: #ff1e56;
+      }
+      
+      .card-footnote {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      
+      .card-footnote a {
+        color: #ff1e56;
+      }
+      
+      .divider-text {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      
+      .sso-buttons button {
+        background: #1a1a1a;
+        border: 1px solid rgba(255, 30, 86, 0.3);
+        color: #ffffff;
+      }
+      
+      .sso-buttons button:hover {
+        background: rgba(255, 30, 86, 0.1);
+        border-color: #ff1e56;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="language-fab" aria-label="Language selector">
+      <input type="checkbox" id="lang-toggle" />
+      <label for="lang-toggle" class="fab" title="Change language">🌐</label>
+      <div class="fab-menu" role="menu">
+        <button type="button" class="lang-option active" data-lang="zh">中文</button>
+        <button type="button" class="lang-option" data-lang="en">EN</button>
+        <button type="button" class="lang-option" data-lang="ja">日本語</button>
+        <button type="button" class="lang-option" data-lang="de">Deutsch</button>
+        <button type="button" class="lang-option" data-lang="vi">Tiếng Việt</button>
+      </div>
+    </section>
+    <div class="page">
+      <section class="hero">
+        <header class="brand">
+          <p class="brand-label" aria-label="Lavas Labs">LAVAS LABS</p>
+        </header>
+
+        <div class="hero-copy">
+          <h1 data-i18n="heroHeading">Your all-in-one business solution</h1>
+          <p class="hero-login-link">
+            <span data-i18n="alreadyHaveAccount">已有账户？</span>
+            <a href="index.html" data-i18n="loginLink">登录</a>
+          </p>
+        </div>
+      </section>
+
+      <section class="login-panel">
+        <div class="card">
+          <form class="login-form" id="signup-form">
+            <label>
+              <span data-i18n="firstNameLabel">名</span>
+              <input
+                type="text"
+                name="firstName"
+                placeholder="First name"
+                data-i18n-placeholder="firstNamePlaceholder"
+                required
+              />
+            </label>
+
+            <label>
+              <span data-i18n="lastNameLabel">姓</span>
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Last name"
+                data-i18n-placeholder="lastNamePlaceholder"
+                required
+              />
+            </label>
+
+            <label>
+              <span data-i18n="countryIncorporationLabel">注册国家/地区</span>
+              <select name="countryIncorporation" required>
+                <option value="" disabled selected data-i18n="selectCountry">
+                  Select country/region
+                </option>
+                <option value="hk">Hong Kong</option>
+                <option value="sg">Singapore</option>
+                <option value="us">United States</option>
+                <option value="gb">United Kingdom</option>
+                <option value="cn">China</option>
+                <option value="de">Germany</option>
+                <option value="fr">France</option>
+                <option value="jp">Japan</option>
+                <option value="kr">South Korea</option>
+                <option value="au">Australia</option>
+                <option value="ca">Canada</option>
+                <option value="in">India</option>
+                <option value="ae">United Arab Emirates</option>
+                <option value="ch">Switzerland</option>
+                <option value="nl">Netherlands</option>
+                <option value="it">Italy</option>
+                <option value="es">Spain</option>
+                <option value="se">Sweden</option>
+                <option value="vn">Vietnam</option>
+                <option value="ky">Cayman Islands</option>
+                <option value="kn">Saint Kitts and Nevis</option>
+                <option value="vg">British Virgin Islands</option>
+              </select>
+            </label>
+
+            <label>
+              <span data-i18n="countryOperationLabel">运营国家/地区</span>
+              <select name="countryOperation" required>
+                <option value="" disabled selected data-i18n="selectCountry">
+                  Select country/region
+                </option>
+                <option value="hk">Hong Kong</option>
+                <option value="sg">Singapore</option>
+                <option value="us">United States</option>
+                <option value="gb">United Kingdom</option>
+                <option value="cn">China</option>
+                <option value="de">Germany</option>
+                <option value="fr">France</option>
+                <option value="jp">Japan</option>
+                <option value="kr">South Korea</option>
+                <option value="au">Australia</option>
+                <option value="ca">Canada</option>
+                <option value="in">India</option>
+                <option value="ae">United Arab Emirates</option>
+                <option value="ch">Switzerland</option>
+                <option value="nl">Netherlands</option>
+                <option value="it">Italy</option>
+                <option value="es">Spain</option>
+                <option value="se">Sweden</option>
+                <option value="vn">Vietnam</option>
+                <option value="ky">Cayman Islands</option>
+                <option value="kn">Saint Kitts and Nevis</option>
+                <option value="vg">British Virgin Islands</option>
+              </select>
+            </label>
+
+            <label>
+              <span data-i18n="emailLabel">电子邮箱</span>
+              <input
+                type="email"
+                name="email"
+                placeholder="name@example.com"
+                data-i18n-placeholder="emailPlaceholder"
+                required
+              />
+            </label>
+
+            <label>
+              <span data-i18n="phoneLabel">手机号码</span>
+              <div class="phone-field">
+                <select name="phoneCode" class="phone-code" required>
+                  <option value="+86">🇨🇳 +86</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+852">🇭🇰 +852</option>
+                  <option value="+65">🇸🇬 +65</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+81">🇯🇵 +81</option>
+                  <option value="+82">🇰🇷 +82</option>
+                  <option value="+49">🇩🇪 +49</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+61">🇦🇺 +61</option>
+                  <option value="+84">🇻🇳 +84</option>
+                </select>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="131 2345 6789"
+                  data-i18n-placeholder="phonePlaceholder"
+                  required
+                />
+              </div>
+            </label>
+
+            <label>
+              <span data-i18n="passwordLabel">密码</span>
+              <div class="password-field">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Choose a password"
+                  data-i18n-placeholder="passwordPlaceholder"
+                  required
+                />
+                <button type="button" class="password-toggle" data-i18n="passwordToggle">
+                  显示
+                </button>
+              </div>
+            </label>
+
+            <button type="submit" class="primary-btn" data-i18n="submit">
+              注册
+            </button>
+          </form>
+        </div>
+      </section>
+    </div>
+    <script>
+      (function () {
+        const translations = {
+          zh: {
+            heroHeading: "一体化企业解决方案",
+            alreadyHaveAccount: "已有账户？",
+            loginLink: "登录",
+            firstNameLabel: "名",
+            firstNamePlaceholder: "名",
+            lastNameLabel: "姓",
+            lastNamePlaceholder: "姓",
+            countryIncorporationLabel: "注册国家/地区",
+            countryOperationLabel: "运营国家/地区",
+            selectCountry: "请选择国家/地区",
+            emailLabel: "电子邮箱",
+            emailPlaceholder: "name@example.com",
+            phoneLabel: "手机号码",
+            phonePlaceholder: "131 2345 6789",
+            passwordLabel: "密码",
+            passwordPlaceholder: "请设置密码",
+            passwordToggle: "显示",
+            submit: "注册",
+          },
+          en: {
+            heroHeading: "Your all-in-one business solution",
+            alreadyHaveAccount: "Already have an account?",
+            loginLink: "Log in",
+            firstNameLabel: "First name",
+            firstNamePlaceholder: "First name",
+            lastNameLabel: "Last name",
+            lastNamePlaceholder: "Last name",
+            countryIncorporationLabel: "Country of incorporation",
+            countryOperationLabel: "Country of operation",
+            selectCountry: "Select country/region",
+            emailLabel: "Email",
+            emailPlaceholder: "name@example.com",
+            phoneLabel: "Phone Number",
+            phonePlaceholder: "131 2345 6789",
+            passwordLabel: "Password",
+            passwordPlaceholder: "Choose a password",
+            passwordToggle: "Show",
+            submit: "Sign up",
+          },
+          ja: {
+            heroHeading: "ビジネスを統合するソリューション",
+            alreadyHaveAccount: "すでにアカウントをお持ちですか？",
+            loginLink: "ログイン",
+            firstNameLabel: "名",
+            firstNamePlaceholder: "名",
+            lastNameLabel: "姓",
+            lastNamePlaceholder: "姓",
+            countryIncorporationLabel: "設立国",
+            countryOperationLabel: "事業展開国",
+            selectCountry: "国/地域を選択",
+            emailLabel: "メールアドレス",
+            emailPlaceholder: "name@example.com",
+            phoneLabel: "電話番号",
+            phonePlaceholder: "131 2345 6789",
+            passwordLabel: "パスワード",
+            passwordPlaceholder: "パスワードを設定",
+            passwordToggle: "表示",
+            submit: "登録",
+          },
+          de: {
+            heroHeading: "Ihre All-in-One-Business-Lösung",
+            alreadyHaveAccount: "Bereits ein Konto?",
+            loginLink: "Anmelden",
+            firstNameLabel: "Vorname",
+            firstNamePlaceholder: "Vorname",
+            lastNameLabel: "Nachname",
+            lastNamePlaceholder: "Nachname",
+            countryIncorporationLabel: "Gründungsland",
+            countryOperationLabel: "Betriebsland",
+            selectCountry: "Land/Region auswählen",
+            emailLabel: "E-Mail",
+            emailPlaceholder: "name@example.com",
+            phoneLabel: "Telefonnummer",
+            phonePlaceholder: "131 2345 6789",
+            passwordLabel: "Passwort",
+            passwordPlaceholder: "Passwort wählen",
+            passwordToggle: "Anzeigen",
+            submit: "Registrieren",
+          },
+          vi: {
+            heroHeading: "Giải pháp kinh doanh tất cả trong một",
+            alreadyHaveAccount: "Đã có tài khoản?",
+            loginLink: "Đăng nhập",
+            firstNameLabel: "Tên",
+            firstNamePlaceholder: "Tên",
+            lastNameLabel: "Họ",
+            lastNamePlaceholder: "Họ",
+            countryIncorporationLabel: "Quốc gia thành lập",
+            countryOperationLabel: "Quốc gia hoạt động",
+            selectCountry: "Chọn quốc gia/khu vực",
+            emailLabel: "Email",
+            emailPlaceholder: "name@example.com",
+            phoneLabel: "Số điện thoại",
+            phonePlaceholder: "131 2345 6789",
+            passwordLabel: "Mật khẩu",
+            passwordPlaceholder: "Chọn mật khẩu",
+            passwordToggle: "Hiển thị",
+            submit: "Đăng ký",
+          },
+        };
+
+        const textNodes = document.querySelectorAll("[data-i18n]");
+        const placeholderNodes = document.querySelectorAll(
+          "[data-i18n-placeholder]"
+        );
+        const langButtons = document.querySelectorAll(".lang-option");
+        const langToggle = document.getElementById("lang-toggle");
+
+        function applyLanguage(lang) {
+          const dict = translations[lang] || translations.zh;
+          document.documentElement.lang = lang;
+
+          textNodes.forEach((node) => {
+            const key = node.dataset.i18n;
+            if (dict[key]) {
+              node.textContent = dict[key];
+            }
+          });
+
+          placeholderNodes.forEach((input) => {
+            const key = input.dataset.i18nPlaceholder;
+            if (dict[key]) {
+              input.placeholder = dict[key];
+            }
+          });
+        }
+
+        langButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const lang = button.dataset.lang;
+            langButtons.forEach((btn) => btn.classList.remove("active"));
+            button.classList.add("active");
+            applyLanguage(lang);
+            if (langToggle) {
+              langToggle.checked = false;
+            }
+          });
+        });
+
+        const form = document.getElementById("signup-form");
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          window.location.href = "kyb.html";
+        });
+
+        const passwordToggle = document.querySelector(".password-toggle");
+        if (passwordToggle) {
+          passwordToggle.addEventListener("click", () => {
+            const passwordInput = form.querySelector('input[name="password"]');
+            const currentLang = document.documentElement.lang || "zh";
+            const dict = translations[currentLang] || translations.zh;
+            
+            if (passwordInput.type === "password") {
+              passwordInput.type = "text";
+              passwordToggle.textContent = currentLang === "zh" ? "隐藏" : 
+                                         currentLang === "en" ? "Hide" :
+                                         currentLang === "ja" ? "非表示" :
+                                         currentLang === "de" ? "Verbergen" : "Ẩn";
+            } else {
+              passwordInput.type = "password";
+              passwordToggle.textContent = dict.passwordToggle;
+            }
+          });
+        }
+
+        applyLanguage("zh");
+      })();
+    </script>
+  </body>
+</html>
+
